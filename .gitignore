@@ -2,7 +2,5 @@
 
 /build
 /cmake-build-*
-
-main
-main.o
+*.o
 beTheBachelor
