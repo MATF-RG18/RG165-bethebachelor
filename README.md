@@ -17,7 +17,7 @@ sa tastature se kreće duž ploče ostajući što
 duže na istoj u nadi da će doći do kraja
 i završiti osnovne studije.
 
-## Instalacija
+## Instalacija :construction:
 >Nakon što preuzmete ceo repozitorijum 
 neophodno je da se pozicionirate u koreni
 direktorijum projekta i kucanjem komande `make`
@@ -25,7 +25,7 @@ kreiraće se izvršiva datoteka.
 
 
 
-## Komande
+## Komande  :video_game:
 >* <button>w</button> &nbsp;&nbsp; Start
 >* <button>a</button> , <button>d</button> &nbsp;&nbsp;Levo-desno kretanje
 >* <button>x</button>&nbsp;&nbsp; Zaustavljanje figurice
