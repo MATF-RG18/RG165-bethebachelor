@@ -18,7 +18,10 @@ duže na istoj u nadi da će doći do kraja
 i završiti osnovne studije.
 
 ## Instalacija :construction:
->Nakon što preuzmete ceo repozitorijum 
+>- Potrebno je na računari imati GL/glut biblioteke kako 
+bi mogli kompilirati izvorne datoteke. 
+>- Instalacija biblioteka `sudo apt-get install binutils-gold freeglut3 freeglut3-dev `
+>- Nakon što preuzmete ceo repozitorijum 
 neophodno je da se pozicionirate u koreni
 direktorijum projekta i kucanjem komande `make`
 kreiraće se izvršiva datoteka.
