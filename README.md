@@ -34,3 +34,10 @@ kreiraće se izvršiva datoteka.
 ## Prikaz
 ![Prikaz](screenshots/1_report.png)
 
+
+---
+
+### Dodatno
+>Za sam tok izrade projekta pratiti 
+[wiki](https://github.com/MATF-RG18/RG165-bethebachelor/wiki) 
+stranicu projekta.
