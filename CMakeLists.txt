@@ -4,7 +4,7 @@ project(RG165_bethebachelor)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        main.c
+        main.cpp
         Makefile
         README.md)
 
