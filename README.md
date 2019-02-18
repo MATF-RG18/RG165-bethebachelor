@@ -39,5 +39,5 @@ kreiraće se izvršiva datoteka.
 
 ### Dodatno
 >Za sam tok izrade projekta pratiti 
-[wiki](https://github.com/MATF-RG18/RG165-bethebachelor/wiki) 
+[wiki](https://github.com/MATF-RG18/RG165-bethebachelor/wiki/Izve%C5%A1taji) 
 stranicu projekta.
