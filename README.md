@@ -17,6 +17,14 @@ sa tastature se kreće duž ploče ostajući što
 duže na istoj u nadi da će doći do kraja
 i završiti osnovne studije.
 
+## Komande
+>* <button>w</button> &nbsp;&nbsp; Start
+>* <button>a</button> , <button>d</button> &nbsp;&nbsp;Levo-desno kretanje
+>* <button>x</button>&nbsp;&nbsp; Zaustavljanje figurice
+
+
+## Prikaz
+![Prikaz](https://github.com/MATF-RG18/RG165-bethebachelor/blob/master/screenshots/1_report.png)
 
 ## Instalacija
 >Nakon što preuzmete ceo repozitorijum 
