@@ -58,27 +58,26 @@ void init(int argc, char** argv) {
 void on_keyboard(unsigned char key, int x, int y) {
     switch (key) {
         case 27: exit(0); break;
-        case 'a': case 'A': {
+        case 'a': case 'A': 
             if (timer_activeX == 0)
                 glutTimerFunc(50, on_timer, 0);
             timer_activeX = -1;
-        }break;
-        case 'd': case 'D': {
+            break;
+        case 'd': case 'D': 
             if (timer_activeX == 0)
                 glutTimerFunc(50, on_timer, 0);
             timer_activeX = 1;
-        }break;
-        case 'w': case 'W': {
+            break;
+        case 'w': case 'W': 
             if (timer_activeZ == 0)
                 glutTimerFunc(50, on_timer2, 0);
             timer_activeZ = 1;
-        }break;
-        case 'x': case 'X': {
+            break;
+        case 'x': case 'X': 
             timer_activeX = 0;
-        }break;
-        case 's': case 'S': {
             timer_activeZ = 0;
-        }break;
+            break;
+
     }
 }
 

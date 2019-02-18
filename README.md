@@ -17,6 +17,14 @@ sa tastature se kreće duž ploče ostajući što
 duže na istoj u nadi da će doći do kraja
 i završiti osnovne studije.
 
+## Instalacija
+>Nakon što preuzmete ceo repozitorijum 
+neophodno je da se pozicionirate u koreni
+direktorijum projekta i kucanjem komande `make`
+kreiraće se izvršiva datoteka.
+
+
+
 ## Komande
 >* <button>w</button> &nbsp;&nbsp; Start
 >* <button>a</button> , <button>d</button> &nbsp;&nbsp;Levo-desno kretanje
@@ -24,10 +32,5 @@ i završiti osnovne studije.
 
 
 ## Prikaz
-![Prikaz](https://github.com/MATF-RG18/RG165-bethebachelor/blob/master/screenshots/1_report.png)
+![Prikaz](screenshots/1_report.png)
 
-## Instalacija
->Nakon što preuzmete ceo repozitorijum 
-neophodno je da se pozicionirate u koreni
-direktorijum projekta i kucanjem komande `make`
-kreiraće se izvršiva datoteka.
