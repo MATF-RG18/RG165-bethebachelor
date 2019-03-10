@@ -4,7 +4,11 @@ project(RG165_bethebachelor)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        main.cpp
+        src/main.cpp
+        src/light.hpp
+        src/light.cpp
+        src/draw.hpp
+        src/draw.cpp
         Makefile
         README.md)
 
