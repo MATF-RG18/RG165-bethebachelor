@@ -4,6 +4,7 @@
 #include <time.h>
 #include "light.hpp"
 #include "draw.hpp"
+#include "camera.hpp"
 
 
 #define FIRST_VIEW (1)
@@ -14,6 +15,8 @@ static int window_width, window_height;
 int timer_activeX = 0, timer_activeZ = 0;
 float x_pos = 0, tmp_z = 0, z_pos = 0;
 
+
+Camera camera;
 
 float lracceleration = 0.06;
 int jump_active = 0;
@@ -27,7 +30,6 @@ void on_reshape(int width, int height);
 void on_timer(int value);
 void on_timer2(int value);
 void on_display(void);
-void set_cam(int id);
 
 
 
@@ -113,6 +115,7 @@ void on_display(void) {
     glViewport(0, 0, window_width, window_height);
 
 
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(
@@ -120,10 +123,9 @@ void on_display(void) {
             window_width / (float)window_height,
             1, 25
     );
-
+    camera.setLook(id);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    set_cam(id);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
@@ -166,13 +168,3 @@ void on_timer2(int value) {
         glutTimerFunc(50, on_timer2, 0);
 }
 
-
-void set_cam(int id) {
-    //FIXME
-    if (id == FIRST_VIEW)
-        gluLookAt(0, 2, 3 + z_pos, 0, 0, z_pos, 0, 1, 0);
-    else if (id == SECOND_VIEW)
-        gluLookAt(0, .5, 3 + z_pos, 0, 0, z_pos, 0, 1, 0);
-    else if (id == THIRD_VIEW)
-        gluLookAt(2, 4, 6, 0, 0, z_pos, 0, 1, 0);
-}

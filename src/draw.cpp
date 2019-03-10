@@ -22,7 +22,7 @@ void drawFigure() {
     glPushMatrix();
     if (tmp_z <= -5){
         tmp_z += 5;
-        lracceleration += .015;
+        lracceleration += .005;
         shuffle_colours();
     }
     if (jump_active) {

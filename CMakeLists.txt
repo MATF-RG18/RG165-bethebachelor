@@ -10,7 +10,7 @@ set(SOURCE_FILES
         src/draw.hpp
         src/draw.cpp
         Makefile
-        README.md)
+        README.md src/camera.cpp src/camera.hpp)
 
 link_libraries(GL)
 link_libraries(GLU)
