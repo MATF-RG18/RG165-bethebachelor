@@ -20,7 +20,7 @@ Camera camera;
 
 float lracceleration = 0.06;
 int jump_active = 0;
-int id = 1;
+int look_id = 1;
 extern GLfloat diffuse_coeffs[4];
 
 extern GLfloat specular_coeffs[4];
@@ -31,8 +31,6 @@ void on_timer(int value);
 void on_timer2(int value);
 void on_display(void);
 
-
-
 void init(int , char**);
 
 int main(int argc, char** argv) {
@@ -41,7 +39,6 @@ int main(int argc, char** argv) {
     glutKeyboardFunc(on_keyboard);
     glutDisplayFunc(on_display);
     glutReshapeFunc(on_reshape);
-
 
     glutMainLoop();
     return 0;
@@ -87,15 +84,15 @@ void on_keyboard(unsigned char key, int x, int y) {
             timer_activeX = 0;
             break;
         case '1':
-            id = FIRST_VIEW;
+            look_id = FIRST_VIEW;
             glutPostRedisplay();
             break;
         case '2':
-            id = SECOND_VIEW;
+            look_id = SECOND_VIEW;
             glutPostRedisplay();
             break;
         case '3':
-            id = THIRD_VIEW;
+            look_id = THIRD_VIEW;
             glutPostRedisplay();
             break;
     }
@@ -110,12 +107,8 @@ void on_display(void) {
 
     setLight();
     setMaterial();
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0, 0, window_width, window_height);
-
-
-
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(
@@ -123,7 +116,7 @@ void on_display(void) {
             window_width / (float)window_height,
             1, 25
     );
-    camera.setLook(id);
+    camera.setLook(look_id);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glEnable(GL_LIGHTING);
@@ -134,12 +127,6 @@ void on_display(void) {
     drawFigure();
     glutSwapBuffers();
 }
-
-
-
-
-
-
 
 void on_timer(int value) {
     if (value != 0)
@@ -154,7 +141,6 @@ void on_timer(int value) {
 
 }
 
-
 /*
  * 2.tajmer sluzi za pokretanje animacije duz pravca Z - ose
 */
@@ -167,4 +153,3 @@ void on_timer2(int value) {
     if (timer_activeZ != 0)
         glutTimerFunc(50, on_timer2, 0);
 }
-
