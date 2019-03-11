@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include <GL/glut.h>
 #include <time.h>
-#include "callbackfuncs.h"
+#include "callbackfuncs.hpp"
 
 
 void init(int , char**);
 
 int main(int argc, char** argv) {
     init(argc, argv);
-
-    glutKeyboardFunc(on_keyboard);
-    glutDisplayFunc(on_display);
-    glutReshapeFunc(on_reshape);
+    init_callbacks();
 
     glutMainLoop();
     return 0;

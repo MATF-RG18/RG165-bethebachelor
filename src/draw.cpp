@@ -3,13 +3,14 @@
 #include <math.h>
 #include "draw.hpp"
 
+
+
 extern GLfloat diffuse_coeffs[4];
 
 extern GLfloat specular_coeffs[4];
 
-extern float x_pos, z_pos, tmp_z;
+extern float tmp_z, x_pos, z_pos;
 extern float lracceleration;
-
 
 
 /* Funckija za iscrtavanje figurice,

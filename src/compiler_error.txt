@@ -1,0 +1,24 @@
+/home/nikjan/Documents/clion-2017.2.3/bin/cmake/bin/cmake --build /home/nikjan/Documents/Grafika/RG165-bethebachelor/cmake-build-debug --target RG165_bethebachelor -- -j 2
+Scanning dependencies of target RG165_bethebachelor
+[ 16%] Building CXX object CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o
+[ 33%] Building CXX object CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o
+[ 50%] Linking CXX executable RG165_bethebachelor
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:15: multiple definition of `camera'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:15: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:16: multiple definition of `lracceleration'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:16: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:17: multiple definition of `look_id'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:17: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:18: multiple definition of `timer_activeX'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:18: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:18: multiple definition of `timer_activeZ'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:18: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:19: multiple definition of `jump_active'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:19: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:20: multiple definition of `x_pos'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:20: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:20: multiple definition of `tmp_z'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:20: first defined here
+CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:20: multiple definition of `z_pos'
+CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o:/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/callbackfuncs.hpp:20: first defined here
+collect2: error: ld returned 1 exit status

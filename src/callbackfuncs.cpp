@@ -3,9 +3,20 @@
 //
 
 #include <GL/glut.h>
-#include "callbackfuncs.h"
+#include "callbackfuncs.hpp"
 #include "draw.hpp"
 #include "light.hpp"
+#include "camera.hpp"
+
+
+static int window_width, window_height;
+Camera camera;
+float lracceleration = 0.06;
+int look_id = 1;
+int timer_activeX = 0, timer_activeZ = 0;
+int jump_active = 0;
+float x_pos = 0, tmp_z = 0, z_pos = 0;
+void on_timer2(int value);
 
 void on_reshape(int width, int height) {
     window_width = width;
@@ -103,4 +114,11 @@ void on_timer2(int value) {
     glutPostRedisplay();
     if (timer_activeZ != 0)
         glutTimerFunc(50, on_timer2, 0);
+}
+
+
+void init_callbacks(void) {
+    glutKeyboardFunc(on_keyboard);
+    glutDisplayFunc(on_display);
+    glutReshapeFunc(on_reshape);
 }
