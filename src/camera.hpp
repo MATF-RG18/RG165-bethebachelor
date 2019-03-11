@@ -2,8 +2,8 @@
 // Created by nikjan on 3/11/19.
 //
 
-#ifndef RG165_BETHEBACHELOR_CAMERA_H
-#define RG165_BETHEBACHELOR_CAMERA_H 1
+#ifndef __CAMERA_HPP__
+#define __CAMERA_HPP__  1
 
 
 class Camera {
@@ -39,4 +39,4 @@ private:
 };
 
 
-#endif //RG165_BETHEBACHELOR_CAMERA_H
+#endif

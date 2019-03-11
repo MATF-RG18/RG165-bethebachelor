@@ -3,12 +3,12 @@
 //
 
 #include <GL/glut.h>
-#include "callbackfuncs.hpp"
 #include "draw.hpp"
 #include "light.hpp"
-#include "camera.hpp"
+#include "callbackfuncs.hpp"
 
 
+static int window_width, window_height;
 
 
 void on_reshape(int width, int height) {
@@ -103,7 +103,6 @@ void on_timer2(int value) {
     if (value != 0)
         return;
     z_pos += (-timer_activeZ * .075);
-    tmp_z += (-timer_activeZ * .075);
     glutPostRedisplay();
     if (timer_activeZ != 0)
         glutTimerFunc(50, on_timer2, 0);

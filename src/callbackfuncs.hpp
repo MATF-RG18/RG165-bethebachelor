@@ -2,8 +2,8 @@
 // Created by nikjan on 3/11/19.
 //
 
-#ifndef RG165_BETHEBACHELOR_CALLBACKFUNCS_H
-#define RG165_BETHEBACHELOR_CALLBACKFUNCS_H
+#ifndef __CALLBACKFUNCS_HPP__
+#define __CALLBACKFUNCS_HPP__
 
 #include "camera.hpp"
 
@@ -12,20 +12,18 @@
 #define THIRD_VIEW (3)
 
 
-static int window_width, window_height;
-Camera camera;
-float lracceleration = 0.06;
-int look_id = 1;
-int timer_activeX = 0, timer_activeZ = 0;
-int jump_active = 0;
-float x_pos = 0, tmp_z = 0, z_pos = 0;
-void on_timer2(int value);
+
+
+
+
 
 void on_reshape(int width, int height);
 void on_display(void);
 void on_keyboard(unsigned char key, int x, int y);
 void on_timer(int value);
 void init_callbacks(void);
+
+void on_timer2(int value);
 
 
 #endif

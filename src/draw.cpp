@@ -10,21 +10,17 @@ extern GLfloat diffuse_coeffs[4];
 
 extern GLfloat specular_coeffs[4];
 
-extern float tmp_z, x_pos, z_pos;
-extern float lracceleration;
+
 
 
 /* Funckija za iscrtavanje figurice,
  * tj loptice u pocetnoj fazi
  */
-
-extern int jump_active;
+float tmp_z = 0;
 float u = 0;
 void drawFigure() {
     glPushMatrix();
     if (tmp_z <= -5){
-        tmp_z += 5;
-        lracceleration += .005;
         shuffle_colours();
     }
     if (jump_active) {
