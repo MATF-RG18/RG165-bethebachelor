@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <GL/glut.h>
 #include <math.h>
+#include "callbackfuncs.hpp"
 #include "draw.hpp"
 
 
