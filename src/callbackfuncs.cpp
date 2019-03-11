@@ -7,10 +7,7 @@
 #include "light.hpp"
 #include "callbackfuncs.hpp"
 
-
 static int window_width, window_height;
-
-
 void on_reshape(int width, int height) {
     window_width = width;
     window_height = height;

@@ -12,6 +12,11 @@
 #define THIRD_VIEW (3)
 
 
+extern Camera camera;
+extern int jump_active;
+extern int timer_activeX, timer_activeZ;
+extern int look_id;
+extern float lracceleration, x_pos, z_pos;
 
 
 
