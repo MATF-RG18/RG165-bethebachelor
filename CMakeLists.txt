@@ -14,7 +14,7 @@ set(SOURCE_FILES
         src/camera.cpp
         src/camera.hpp
         src/callbackfuncs.cpp
-        src/callbackfuncs.h)
+        src/callbackfuncs.hpp)
 
 link_libraries(GL)
 link_libraries(GLU)
