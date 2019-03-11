@@ -14,7 +14,7 @@ $(PROGRAM): main.o light.o draw.o
 .PHONY: clean dist
 
 clean:
-	-rm *.o $(PROGRAM) *core
+	-rm  -f *.o $(PROGRAM) *core
 
 dist: clean
 	-tar -chvj -C .. -f ../$(PROGRAM).tar.bz2 $(PROGRAM)
