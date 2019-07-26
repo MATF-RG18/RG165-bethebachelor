@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include <GL/glut.h>
 #include <math.h>
 #include "callbackfuncs.hpp"
@@ -27,7 +28,9 @@ float tmp_z = 0;
 float u = 0;
 void drawFigure() {
     glPushMatrix();
+	std::cout << tmp_z << std::endl;
     if (tmp_z <= -5){
+		tmp_z = 0;
         shuffle_colours();
     }
     if (jump_active) {

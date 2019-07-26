@@ -96,10 +96,12 @@ void on_timer(int value) {
 /*
  * 2.tajmer sluzi za pokretanje animacije duz pravca Z - ose
 */
+extern float tmp_z;
 void on_timer2(int value) {
     if (value != 0)
         return;
     z_pos += (-timer_activeZ * .075);
+	tmp_z += (-timer_activeZ * .075);
     glutPostRedisplay();
     if (timer_activeZ != 0)
         glutTimerFunc(50, on_timer2, 0);

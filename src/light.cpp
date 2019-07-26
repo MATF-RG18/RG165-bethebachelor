@@ -1,8 +1,11 @@
 #include "light.hpp"
 #include <GL/glut.h>
-
+#include <time.h>
 
 #define ARRAY_SIZE 4
+
+
+
 
 
 GLfloat light_position[ARRAY_SIZE] = {1, 1, 1, 0};
@@ -16,7 +19,7 @@ GLfloat specular_coeffs[ARRAY_SIZE] = { .5, 0, 0, 1 };
 
 
 void setLight() {
-    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);

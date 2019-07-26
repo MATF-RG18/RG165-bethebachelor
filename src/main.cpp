@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
 void init(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
-    srand((unsigned)time(NULL));
+    srand((unsigned)time(nullptr));
 
     glutInitWindowSize(600, 600);
     glutInitWindowPosition(100, 100);
