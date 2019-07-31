@@ -32,7 +32,7 @@ kreiraće se izvršiva datoteka.
 >* <button>w</button> &nbsp;&nbsp; Start
 >* <button>a</button> , <button>d</button> &nbsp;&nbsp;Levo-desno kretanje
 >* <button>x</button>&nbsp;&nbsp; Zaustavljanje figurice
-
+>* <button>q</button>&nbsp;&nbsp; Skok
 
 ## Prikaz
 ![Prikaz](screenshots/1_report.png)
