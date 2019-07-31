@@ -4,7 +4,7 @@
 #include "camera.hpp"
 
 void drawFigure();
-void shuffle_colours(void);
+void change_colour(void);
 void drawPlane();
 
 #endif

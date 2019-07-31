@@ -1,0 +1,3 @@
+/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/CMakeFiles/rebuild_cache.dir
+/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/CMakeFiles/RG165_bethebachelor.dir
+/home/nikjan/Documents/Grafika/RG165-bethebachelor/src/CMakeFiles/edit_cache.dir

@@ -2,7 +2,7 @@
 // Created by nikjan on 3/11/19.
 //
 
-#include <GL/glu.h>
+#include <GL/glut.h>
 #include "camera.hpp"
 
 #define FIRST_VIEW (1)
@@ -21,11 +21,11 @@ void Camera::setLook(int id) {
             setCenterX(0); setCenterY(0); setCenterZ(z_pos);
             break;
         case SECOND_VIEW:
-            setEyeX(0); setEyeY(.5); setEyeZ(3 + z_pos);
+            setEyeX(0); setEyeY(1); setEyeZ(3 + z_pos);
             setCenterX(0); setCenterY(0); setCenterZ(z_pos);
             break;
         case THIRD_VIEW:
-            setEyeX(2); setEyeY(4); setEyeZ(6);
+            setEyeX(2); setEyeY(4); setEyeZ(5+z_pos);
             setCenterX(0); setCenterY(0); setCenterZ(z_pos);
             break;
     }

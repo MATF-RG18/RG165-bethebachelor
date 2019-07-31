@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/RG165_bethebachelor.dir/main.cpp.o CMakeFiles/RG165_bethebachelor.dir/light.cpp.o CMakeFiles/RG165_bethebachelor.dir/draw.cpp.o CMakeFiles/RG165_bethebachelor.dir/camera.cpp.o CMakeFiles/RG165_bethebachelor.dir/callbackfuncs.cpp.o  -o RG165_bethebachelor -lGL -lGLU -lglut 

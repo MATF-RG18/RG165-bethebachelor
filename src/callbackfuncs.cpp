@@ -7,6 +7,8 @@
 #include "light.hpp"
 #include "callbackfuncs.hpp"
 
+extern float tmp_z;
+
 static int window_width, window_height;
 void on_reshape(int width, int height) {
     window_width = width;
@@ -24,7 +26,7 @@ void on_display(void) {
     gluPerspective(
             60,
             window_width / (float)window_height,
-            1, 25
+            1, z_pos
     );
     camera.setLook(look_id);
     glMatrixMode(GL_MODELVIEW);
@@ -96,7 +98,7 @@ void on_timer(int value) {
 /*
  * 2.tajmer sluzi za pokretanje animacije duz pravca Z - ose
 */
-extern float tmp_z;
+
 void on_timer2(int value) {
     if (value != 0)
         return;
