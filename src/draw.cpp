@@ -59,7 +59,7 @@ void change_colour(void) {
 
 
 void drawPlane() {
-    std::cout << z_pos << std::endl;
+    //std::cout << z_pos << std::endl;
 
 
     glPushMatrix();
