@@ -1,5 +1,5 @@
 /.idea
-
+/literatura
 /build
 /cmake-build-*
 *.o
