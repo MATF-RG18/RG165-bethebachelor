@@ -17,7 +17,7 @@ extern int jump_active;
 extern int timer_activeX, timer_activeZ;
 extern int look_id;
 extern float lracceleration, x_pos, z_pos;
-
+extern int direction_keeper;
 
 
 

@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "callbackfuncs.hpp"
-#include "draw.hpp"
+#include "figure.hpp"
 
 
 
@@ -17,7 +17,7 @@ int jump_active = 0;
 float x_pos = 0, z_pos = 0;
 float lracceleration = 0.06;
 int colour_counter = 0;
-
+int direction_keeper = 0;
 
 
 
@@ -26,7 +26,7 @@ int colour_counter = 0;
  */
 float tmp_z = 0;
 float u = 0;
-void drawFigure() {
+void Ball::draw() {
     glPushMatrix();
 	//std::cout << tmp_z << std::endl;
     if (tmp_z <= -5){
@@ -35,6 +35,7 @@ void drawFigure() {
     }
 
     if (jump_active) {
+
         glTranslatef(x_pos, .2 + sin(u), z_pos);
         u += .1;
     }
@@ -42,13 +43,16 @@ void drawFigure() {
 
 
     if (jump_active == 1 and u >= 3.14) {
+
         jump_active = 0;
         u = 0;
+        timer_activeX = direction_keeper;
+        glutTimerFunc(50, on_timer, 0);
     }
 
     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse_coeffs[colour_counter]);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular_coeffs);
-    glutSolidSphere(.1, 20, 20);
+    glutSolidSphere(.15, 20, 20);
     glPopMatrix();
 }
 
@@ -58,9 +62,7 @@ void change_colour(void) {
 }
 
 
-void drawPlane() {
-    //std::cout << z_pos << std::endl;
-
+void Plane::draw(){
 
     glPushMatrix();
     glTranslatef(0, 0, z_pos);

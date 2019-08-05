@@ -177,32 +177,32 @@ src/camera.cpp.s:
 	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.s
 .PHONY : src/camera.cpp.s
 
-src/draw.o: src/draw.cpp.o
+src/figure.o: src/figure.cpp.o
 
-.PHONY : src/draw.o
+.PHONY : src/figure.o
 
 # target to build an object file
-src/draw.cpp.o:
-	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/draw.cpp.o
-.PHONY : src/draw.cpp.o
+src/figure.cpp.o:
+	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.o
+.PHONY : src/figure.cpp.o
 
-src/draw.i: src/draw.cpp.i
+src/figure.i: src/figure.cpp.i
 
-.PHONY : src/draw.i
+.PHONY : src/figure.i
 
 # target to preprocess a source file
-src/draw.cpp.i:
-	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/draw.cpp.i
-.PHONY : src/draw.cpp.i
+src/figure.cpp.i:
+	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.i
+.PHONY : src/figure.cpp.i
 
-src/draw.s: src/draw.cpp.s
+src/figure.s: src/figure.cpp.s
 
-.PHONY : src/draw.s
+.PHONY : src/figure.s
 
 # target to generate assembly for a file
-src/draw.cpp.s:
-	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/draw.cpp.s
-.PHONY : src/draw.cpp.s
+src/figure.cpp.s:
+	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.s
+.PHONY : src/figure.cpp.s
 
 src/light.o: src/light.cpp.o
 
@@ -273,9 +273,9 @@ help:
 	@echo "... src/camera.o"
 	@echo "... src/camera.i"
 	@echo "... src/camera.s"
-	@echo "... src/draw.o"
-	@echo "... src/draw.i"
-	@echo "... src/draw.s"
+	@echo "... src/figure.o"
+	@echo "... src/figure.i"
+	@echo "... src/figure.s"
 	@echo "... src/light.o"
 	@echo "... src/light.i"
 	@echo "... src/light.s"

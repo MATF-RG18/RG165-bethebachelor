@@ -3,11 +3,14 @@
 //
 
 #include <GL/glut.h>
-#include "draw.hpp"
+#include "figure.hpp"
 #include "light.hpp"
 #include "callbackfuncs.hpp"
 
 extern float tmp_z;
+Plane plane;
+Ball ball;
+
 
 static int window_width, window_height;
 void on_reshape(int width, int height) {
@@ -34,9 +37,8 @@ void on_display(void) {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
-    drawPlane();
-
-    drawFigure();
+    plane.draw();
+    ball.draw();
     glutSwapBuffers();
 }
 
@@ -64,7 +66,9 @@ void on_keyboard(unsigned char key, int x, int y) {
             break;
         case 'q': case 'Q':
             jump_active = 1;
+            direction_keeper = timer_activeX;
             timer_activeX = 0;
+            glutPostRedisplay();
             break;
         case '1':
             look_id = FIRST_VIEW;
@@ -90,7 +94,7 @@ void on_timer(int value) {
     if (x_pos <= -3 || x_pos >= 3)
         exit(EXIT_FAILURE);
 
-    if (timer_activeX != 0 or timer_activeZ != 0)
+    if (timer_activeX and timer_activeZ)
         glutTimerFunc(50, on_timer, 0);
 
 }

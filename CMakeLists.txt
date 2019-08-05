@@ -7,8 +7,8 @@ set(SOURCE_FILES
         src/main.cpp
         src/light.hpp
         src/light.cpp
-        src/draw.hpp
-        src/draw.cpp
+        src/figure.hpp
+        src/figure.cpp
         Makefile
         README.md
         src/camera.cpp

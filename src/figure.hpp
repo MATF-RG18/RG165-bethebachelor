@@ -3,9 +3,21 @@
 
 #include "camera.hpp"
 
-void drawFigure();
+
+class Plane {
+public:
+    void draw();
+};
+
+class Ball {
+public:
+    void draw();
+};
+
+
+
 void change_colour(void);
-void drawPlane();
+
 
 #endif
 
