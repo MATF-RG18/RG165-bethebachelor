@@ -1,0 +1,3 @@
+/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/rebuild_cache.dir
+/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/RG165_bethebachelor.dir
+/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/edit_cache.dir
