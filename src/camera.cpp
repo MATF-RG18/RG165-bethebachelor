@@ -17,16 +17,16 @@ extern float z_pos;
 void Camera::setLook(int id) {
     switch (id) {
         case FIRST_VIEW:
-            setEyeX(0); setEyeY(2); setEyeZ(3+z_pos);
-            setCenterX(0); setCenterY(0); setCenterZ(z_pos);
+            setEyeX(0); setEyeY(2); setEyeZ(5 + z_pos);
+            setCenterX(0); setCenterY(0); setCenterZ(z_pos-2);
             break;
         case SECOND_VIEW:
-            setEyeX(0); setEyeY(1); setEyeZ(3 + z_pos);
-            setCenterX(0); setCenterY(0); setCenterZ(z_pos);
+            setEyeX(0); setEyeY(4); setEyeZ(z_pos + 3);
+            setCenterX(0); setCenterY(0); setCenterZ(z_pos-2);
             break;
         case THIRD_VIEW:
             setEyeX(2); setEyeY(4); setEyeZ(5+z_pos);
-            setCenterX(0); setCenterY(0); setCenterZ(z_pos);
+            setCenterX(0); setCenterY(0); setCenterZ(z_pos + 1.5);
             break;
     }
     setUpX(0); setUpY(1); setUpZ(0);

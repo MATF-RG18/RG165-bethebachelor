@@ -1,25 +1,103 @@
-//
+    //
 // Created by nikjan on 3/11/19.
 //
 
 #include <GL/glut.h>
+#include <iostream>
+#include <random>
 #include "figure.hpp"
 #include "light.hpp"
 #include "callbackfuncs.hpp"
 
-extern float tmp_z;
-Plane plane;
-Ball ball;
-
-
 static int window_width, window_height;
+extern float ind_for_colors;
+Plane plane;
+Student student;
+typedef enum {first, second, third, fourth}YEAR;
+YEAR year = first;
+
+YEAR operator++(YEAR& year) {
+    if (year == first)
+        year = second;
+    else if (year == second)
+        year = third;
+    else if (year == third)
+        year = fourth;
+    return year;
+}
+
+bool gen_coins1 = false, gen_coins2 = false, gen_coins3 = false, gen_coins4 = false;
+unsigned courses_left = 40;
+int increment = 0;
+
+int sub_inx = 0;
+
+std::vector<std::string> courses = {
+        "UOAR1", "LAAG", "P1", "DS1", "EJ1",
+        "UOAR2", "A1", "P2", "DS2", "EJ2",
+        "G", "OS", "AISP", "A2", "UVIT",
+        "ALG", "A3", "OOP", "KIAA", "ASTRO",
+        "RBP", "UNM", "PPJ", "V", "RG",
+        "S", "IP1", "VI", "PP", "KK",
+        "RM", "RI", "DS3", "RS", "IP2"
+        "UUTZ", "FP", "PROJBP", "UIDT", "PZV"
+};
+
+
+
+std::vector<Coin*> vYear1(10);
+std::vector<Coin*> vYear2(10);
+std::vector<Coin*> vYear3(10);
+std::vector<Coin*> vYear4(10);
+
+
+
+//Ova funkcija je manje-vise prepisana sa nekog klipa na YT.
+void draw_score(const char* score, int length, int x, int y) {
+    glMatrixMode(GL_PROJECTION);
+    double *matrix = new double[16];
+    glGetDoublev(GL_PROJECTION_MATRIX, matrix);
+    glLoadIdentity();
+    glOrtho(0, 600, 0, 600, -5, 5);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glPushMatrix();
+    glLoadIdentity();
+    glRasterPos2i(x, y);
+    for (int i = 0; i < length; i++)
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, score[i]);
+    glPopMatrix();
+    glMatrixMode(GL_PROJECTION);
+    glLoadMatrixd(matrix);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+
+void fill_vector_of_courses(std::vector<Coin*>& vYear) {
+    for (int i = 0; i < vYear.size(); i++) {
+        std::random_device rd;
+        std::uniform_real_distribution<> distZ(-55 - increment, -3 - increment);
+        std::uniform_real_distribution<> distX(-2.5, 2.5);
+        float z_coord = distZ(rd);
+        float x_coord = distX(rd);
+        if (vYear[i] != nullptr and vYear[i]->isPassed()) {
+            delete vYear[i];
+            vYear[i] = new Coin(courses[sub_inx++], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord);
+        } else if (vYear[i] == nullptr)
+            vYear[i] = new Coin(courses[sub_inx++], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord);
+        else
+            sub_inx++;
+    }
+}
+
 void on_reshape(int width, int height) {
     window_width = width;
     window_height = height;
 }
 
-void on_display(void) {
 
+
+void on_display(void) {
     setLight();
     setMaterial();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -36,13 +114,115 @@ void on_display(void) {
     glLoadIdentity();
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-
     plane.draw();
-    ball.draw();
+    student.draw();
+
+
+
+    draw_coins();
+
+    std::string buffer("Ostalo ti je jos ");
+    buffer += std::to_string(courses_left) + " ispita do kraja.\n";
+    for (auto course: vYear1) {
+        if (!course->isPassed())
+            buffer += course->getName() + "\n";
+    }
+    draw_score(buffer.data(), buffer.size(), 0, 580);
     glutSwapBuffers();
 }
 
-void on_keyboard(unsigned char key, int x, int y) {
+    void test_collision() {
+        for (auto course: vYear1) {
+
+            if (course->touched(student.x_front, student.x_back, student.y_front, student.y_back,
+                                student.z_front, student.z_back))
+                course->confirmPassed();
+        }
+    }
+
+
+    void draw_coins() {
+        bool gen_coins;
+        std::vector<Coin*>* vYear;
+        switch (year) {
+            case first:
+                gen_coins = gen_coins1;
+                vYear = &vYear1;
+                break;
+            case second:
+                gen_coins = gen_coins2;
+                vYear = &vYear2;
+                break;
+            case third:
+                gen_coins = gen_coins3;
+                vYear = &vYear3;
+                break;
+            case fourth:
+                gen_coins = gen_coins4;
+                vYear = &vYear4;
+                break;
+        }
+        std::cout << "----------------------" << std::endl;
+        std::cout << z_pos << std::endl;
+        std::cout << increment << std::endl;
+        if (-0.01 - increment >= z_pos and z_pos > -55 - increment) {
+            if (!gen_coins) {
+                fill_vector_of_courses(*vYear);
+                switch (year) {
+                    case first:
+                        gen_coins1 = true;
+                        break;
+                    case second:
+                        gen_coins2 = true;
+                        break;
+                    case third:
+                        gen_coins3 = true;
+                        break;
+                    case fourth:
+                        gen_coins4 = true;
+                        break;
+                }
+            }
+        } else {
+            increment += 55;
+            bool finishedYear = true;
+            for (auto it: *vYear)
+                if(!it->isPassed())
+                    finishedYear = false;
+
+            if (finishedYear)
+                year = ++year;
+            else {
+                switch (year) {
+                    case first:
+                        gen_coins1 = false;
+                        sub_inx = 0;
+                        break;
+                    case second:
+                        gen_coins2 = false;
+                        sub_inx = 10;
+                        break;
+                    case third:
+                        gen_coins3 = false;
+                        sub_inx = 20;
+                        break;
+                    case fourth:
+                        gen_coins4 = false;
+                        sub_inx = 30;
+                        break;
+                }
+            }
+        }
+
+
+        for (auto course: *vYear)
+            if (!course->isPassed())
+                course->draw();
+
+        test_collision();
+    }
+
+    void on_keyboard(unsigned char key, int x, int y) {
     switch (key) {
         case 27: exit(0); break;
         case 'a': case 'A':
@@ -71,16 +251,20 @@ void on_keyboard(unsigned char key, int x, int y) {
             glutPostRedisplay();
             break;
         case '1':
+            if (look_id != 1)
+                glutPostRedisplay();
             look_id = FIRST_VIEW;
-            glutPostRedisplay();
             break;
         case '2':
+            if (look_id != 2)
+                glutPostRedisplay();
             look_id = SECOND_VIEW;
-            glutPostRedisplay();
             break;
         case '3':
+            if (look_id != 3)
+                glutPostRedisplay();
             look_id = THIRD_VIEW;
-            glutPostRedisplay();
+
             break;
     }
 }
@@ -106,8 +290,8 @@ void on_timer(int value) {
 void on_timer2(int value) {
     if (value != 0)
         return;
-    z_pos += (-timer_activeZ * .075);
-	tmp_z += (-timer_activeZ * .075);
+    z_pos += (-timer_activeZ * .095);
+	ind_for_colors += (-timer_activeZ * .095);
     glutPostRedisplay();
     if (timer_activeZ != 0)
         glutTimerFunc(50, on_timer2, 0);
@@ -119,3 +303,5 @@ void init_callbacks(void) {
     glutDisplayFunc(on_display);
     glutReshapeFunc(on_reshape);
 }
+
+

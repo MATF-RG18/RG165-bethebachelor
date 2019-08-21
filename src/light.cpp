@@ -14,14 +14,13 @@ GLfloat light_diffuse[ARRAY_SIZE] = {.1, .1, .1, 0};
 GLfloat light_specular[ARRAY_SIZE] = {.3, .3, .3, 1};
 
 GLfloat ambient_coeffs[ARRAY_SIZE] = {.3, .3, .7, 1};
-GLfloat diffuse_coeffs[7][ARRAY_SIZE] = {
+GLfloat diffuse_coeffs[6][ARRAY_SIZE] = {
         {1, 0, 0},
         {0, 1, 0},
         {5/255.0, 254/255.0, 1},
         {1, 1, 1},
-        {1, 1, 0},
         {1, 14/255.0, 177/255.0},
-        {1, 67/255.0, 8/255.0}
+        {1, 67/255.0, 8 /255.0}
 };
 
 

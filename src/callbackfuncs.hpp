@@ -5,7 +5,9 @@
 #ifndef __CALLBACKFUNCS_HPP__
 #define __CALLBACKFUNCS_HPP__
 
+#include <vector>
 #include "camera.hpp"
+#include "figure.hpp"
 
 #define FIRST_VIEW (1)
 #define SECOND_VIEW (2)
@@ -21,7 +23,10 @@ extern int direction_keeper;
 
 
 
-
+void draw_coins();
+void test_collision();
+void draw_score(const char* score, int length, int x, int y);
+void fill_vector_of_courses(std::vector<Coin*>& vYear);
 void on_reshape(int width, int height);
 void on_display(void);
 void on_keyboard(unsigned char key, int x, int y);
@@ -29,6 +34,7 @@ void on_timer(int value);
 void init_callbacks(void);
 
 void on_timer2(int value);
+
 
 
 #endif
