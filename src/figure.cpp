@@ -36,11 +36,6 @@ void Student::draw() {
     z_front = z_pos;
     x_front = x_pos;
 
-    if (ind_for_colors <= -10){
-		ind_for_colors = 0;
-        change_colour();
-    }
-
     if (jump_active) {
         y_front = sin(u);
         glTranslatef(x_pos, 1.4 + sin(u), z_pos);
@@ -184,10 +179,11 @@ Coin::Coin(const std::string &name, GLdouble disk_inner, GLdouble disk_outer, GL
 extern unsigned courses_left;
 bool Coin::touched(GLdouble student_x_front, GLdouble student_x_back, GLdouble student_y_front,
               GLdouble student_y_back, GLdouble student_z_front, GLdouble studnet_z_back) const {
-    double epsilon = 0.15;
-    double epsilon_z = 0.25;
-    bool A = student_x_front > x_front - epsilon and student_x_front < x_front + epsilon;
-    bool B = student_y_front > y_front - epsilon and student_y_front < y_front + epsilon;
+    double epsilon_x = 0.20;
+    double epsilon_y = 0.05;
+    double epsilon_z = 0.30;
+    bool A = student_x_front > x_front - epsilon_x and student_x_front < x_front + epsilon_x;
+    bool B = student_y_front > y_front - epsilon_y and student_y_front < y_front + epsilon_y;
     bool C = student_z_front > z_front - epsilon_z and student_z_front < z_front + epsilon_z;
 
     if (A and B and C and !passed) {

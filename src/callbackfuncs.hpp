@@ -24,7 +24,7 @@ extern int direction_keeper;
 
 
 void draw_coins();
-void test_collision();
+void test_collision(std::vector<Coin*>&);
 void draw_score(const char* score, int length, int x, int y);
 void fill_vector_of_courses(std::vector<Coin*>& vYear);
 void on_reshape(int width, int height);

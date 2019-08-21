@@ -74,17 +74,19 @@ void draw_score(const char* score, int length, int x, int y) {
 
 
 void fill_vector_of_courses(std::vector<Coin*>& vYear) {
+
     for (int i = 0; i < vYear.size(); i++) {
         std::random_device rd;
         std::uniform_real_distribution<> distZ(-55 - increment, -3 - increment);
         std::uniform_real_distribution<> distX(-2.5, 2.5);
         float z_coord = distZ(rd);
         float x_coord = distX(rd);
-        if (vYear[i] != nullptr and vYear[i]->isPassed()) {
+        if (vYear[i] != nullptr and !vYear[i]->isPassed()) {
             delete vYear[i];
             vYear[i] = new Coin(courses[sub_inx++], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord);
-        } else if (vYear[i] == nullptr)
+        } else if (vYear[i] == nullptr) {
             vYear[i] = new Coin(courses[sub_inx++], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord);
+        }
         else
             sub_inx++;
     }
@@ -131,8 +133,8 @@ void on_display(void) {
     glutSwapBuffers();
 }
 
-    void test_collision() {
-        for (auto course: vYear1) {
+    void test_collision(std::vector<Coin*>& vYear) {
+        for (auto course: vYear) {
 
             if (course->touched(student.x_front, student.x_back, student.y_front, student.y_back,
                                 student.z_front, student.z_back))
@@ -162,9 +164,7 @@ void on_display(void) {
                 vYear = &vYear4;
                 break;
         }
-        std::cout << "----------------------" << std::endl;
-        std::cout << z_pos << std::endl;
-        std::cout << increment << std::endl;
+
         if (-0.01 - increment >= z_pos and z_pos > -55 - increment) {
             if (!gen_coins) {
                 fill_vector_of_courses(*vYear);
@@ -184,14 +184,34 @@ void on_display(void) {
                 }
             }
         } else {
+            change_colour();
             increment += 55;
             bool finishedYear = true;
             for (auto it: *vYear)
                 if(!it->isPassed())
                     finishedYear = false;
 
-            if (finishedYear)
+            if (finishedYear) {
+                //switch (year) {
+                //    case first:
+                //       for (auto it: vYear1)
+                //            delete it;
+                //        break;
+                //    case second:
+                //        for (auto it: vYear2)
+                //            delete it;
+                //        break;
+                //    case  third:
+                //        for (auto it: vYear3)
+                //            delete it;
+                //        break;
+                //    case fourth:
+                //        for (auto it: vYear4)
+                //            delete it;
+                //        break;
+                //}
                 year = ++year;
+            }
             else {
                 switch (year) {
                     case first:
@@ -219,7 +239,7 @@ void on_display(void) {
             if (!course->isPassed())
                 course->draw();
 
-        test_collision();
+        test_collision(*vYear);
     }
 
     void on_keyboard(unsigned char key, int x, int y) {
