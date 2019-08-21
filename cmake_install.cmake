@@ -1,4 +1,4 @@
-# Install script for directory: /home/jankovic/Documents/RG165-bethebachelor
+# Install script for directory: /home/nikjan/Documents/Grafika/RG165-bethebachelor
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jankovic/Documents/RG165-bethebachelor/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/nikjan/Documents/Grafika/RG165-bethebachelor/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,7 +1,3 @@
-    //
-// Created by nikjan on 3/11/19.
-//
-
 #include <GL/glut.h>
 #include <iostream>
 #include <random>
@@ -44,6 +40,7 @@ std::vector<std::string> courses = {
 };
 
 
+GLuint names[2];
 
 std::vector<Coin*> vYear1(10);
 std::vector<Coin*> vYear2(10);
@@ -123,6 +120,7 @@ void on_display(void) {
 
     draw_coins();
 
+
     std::string buffer("Ostalo ti je jos ");
     buffer += std::to_string(courses_left) + " ispita do kraja.\n";
     for (auto course: vYear1) {
@@ -130,119 +128,101 @@ void on_display(void) {
             buffer += course->getName() + "\n";
     }
     draw_score(buffer.data(), buffer.size(), 0, 580);
+    glPopMatrix();
     glutSwapBuffers();
 }
 
-    void test_collision(std::vector<Coin*>& vYear) {
-        for (auto course: vYear) {
+void test_collision(std::vector<Coin*>& vYear) {
+    for (auto course: vYear) {
+		if (course->touched(student.x_front, student.x_back, student.y_front, student.y_back,
+                            student.z_front, student.z_back))
+            course->confirmPassed();
+    }
+}
 
-            if (course->touched(student.x_front, student.x_back, student.y_front, student.y_back,
-                                student.z_front, student.z_back))
-                course->confirmPassed();
+
+void draw_coins() {
+    bool gen_coins;
+    std::vector<Coin*>* vYear;
+    switch (year) {
+        case first:
+            gen_coins = gen_coins1;
+            vYear = &vYear1;
+            break;
+        case second:
+            gen_coins = gen_coins2;
+            vYear = &vYear2;
+            break;
+        case third:
+            gen_coins = gen_coins3;
+            vYear = &vYear3;
+            break;
+        case fourth:
+            gen_coins = gen_coins4;
+            vYear = &vYear4;
+            break;
+    }
+
+    if (-0.01 - increment >= z_pos and z_pos > -55 - increment) {
+        if (!gen_coins) {
+            fill_vector_of_courses(*vYear);
+            switch (year) {
+                case first:
+                    gen_coins1 = true;
+                    break;
+                case second:
+                    gen_coins2 = true;
+                    break;
+                case third:
+                    gen_coins3 = true;
+                    break;
+                case fourth:
+                    gen_coins4 = true;
+                    break;
+            }
+        }
+    } else {
+        change_colour();
+        increment += 55;
+        bool finishedYear = true;
+        for (auto it: *vYear)
+            if(!it->isPassed())
+                finishedYear = false;
+
+        if (finishedYear) {
+            year = ++year;
+        }
+        else {
+            switch (year) {
+                case first:
+                    gen_coins1 = false;
+                    sub_inx = 0;
+                    break;
+                case second:
+                    gen_coins2 = false;
+                    sub_inx = 10;
+                    break;
+                case third:
+                    gen_coins3 = false;
+                    sub_inx = 20;
+                    break;
+                case fourth:
+                    gen_coins4 = false;
+                    sub_inx = 30;
+                    break;
+            }
         }
     }
 
 
-    void draw_coins() {
-        bool gen_coins;
-        std::vector<Coin*>* vYear;
-        switch (year) {
-            case first:
-                gen_coins = gen_coins1;
-                vYear = &vYear1;
-                break;
-            case second:
-                gen_coins = gen_coins2;
-                vYear = &vYear2;
-                break;
-            case third:
-                gen_coins = gen_coins3;
-                vYear = &vYear3;
-                break;
-            case fourth:
-                gen_coins = gen_coins4;
-                vYear = &vYear4;
-                break;
-        }
+    for (auto course: *vYear)
+        if (!course->isPassed())
+            course->draw();
 
-        if (-0.01 - increment >= z_pos and z_pos > -55 - increment) {
-            if (!gen_coins) {
-                fill_vector_of_courses(*vYear);
-                switch (year) {
-                    case first:
-                        gen_coins1 = true;
-                        break;
-                    case second:
-                        gen_coins2 = true;
-                        break;
-                    case third:
-                        gen_coins3 = true;
-                        break;
-                    case fourth:
-                        gen_coins4 = true;
-                        break;
-                }
-            }
-        } else {
-            change_colour();
-            increment += 55;
-            bool finishedYear = true;
-            for (auto it: *vYear)
-                if(!it->isPassed())
-                    finishedYear = false;
+    test_collision(*vYear);
+}
 
-            if (finishedYear) {
-                //switch (year) {
-                //    case first:
-                //       for (auto it: vYear1)
-                //            delete it;
-                //        break;
-                //    case second:
-                //        for (auto it: vYear2)
-                //            delete it;
-                //        break;
-                //    case  third:
-                //        for (auto it: vYear3)
-                //            delete it;
-                //        break;
-                //    case fourth:
-                //        for (auto it: vYear4)
-                //            delete it;
-                //        break;
-                //}
-                year = ++year;
-            }
-            else {
-                switch (year) {
-                    case first:
-                        gen_coins1 = false;
-                        sub_inx = 0;
-                        break;
-                    case second:
-                        gen_coins2 = false;
-                        sub_inx = 10;
-                        break;
-                    case third:
-                        gen_coins3 = false;
-                        sub_inx = 20;
-                        break;
-                    case fourth:
-                        gen_coins4 = false;
-                        sub_inx = 30;
-                        break;
-                }
-            }
-        }
-
-
-        for (auto course: *vYear)
-            if (!course->isPassed())
-                course->draw();
-
-        test_collision(*vYear);
-    }
-
-    void on_keyboard(unsigned char key, int x, int y) {
+void on_keyboard(unsigned char key, int x, int y) {
     switch (key) {
         case 27: exit(0); break;
         case 'a': case 'A':
@@ -325,3 +305,28 @@ void init_callbacks(void) {
 }
 
 
+
+void initialize_texture() {
+	Image* image;
+	
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+    glGenTextures(2, names);
+    image = image_init(0, 0);
+	image_read(image, "src/images/filipMaric.bmp");
+
+	
+	glBindTexture(GL_TEXTURE_2D, names[0]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+	image_done(image);
+}

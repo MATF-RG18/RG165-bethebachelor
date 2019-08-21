@@ -8,6 +8,7 @@
 #include <vector>
 #include "camera.hpp"
 #include "figure.hpp"
+#include "image.hpp"
 
 #define FIRST_VIEW (1)
 #define SECOND_VIEW (2)
@@ -22,7 +23,7 @@ extern float lracceleration, x_pos, z_pos;
 extern int direction_keeper;
 
 
-
+void initialize_texture();
 void draw_coins();
 void test_collision(std::vector<Coin*>&);
 void draw_score(const char* score, int length, int x, int y);

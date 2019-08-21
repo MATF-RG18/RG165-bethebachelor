@@ -18,7 +18,7 @@ float x_pos = 0, z_pos = -0.1;
 float lracceleration = 0.06;
 int colour_counter = 0;
 int direction_keeper = 0;
-
+extern GLuint names[2];
 
 
 
@@ -148,6 +148,7 @@ void Plane::draw(){
 
 void Coin::draw() {
     GLfloat coin_color[4] = {1, 1, 0, 0};
+	glEnable(GL_TEXTURE_2D);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, coin_color);
     glLightfv(GL_LIGHT0, GL_AMBIENT, coin_color);
     glLightfv(GL_LIGHT0, GL_SPECULAR, coin_color);
@@ -162,8 +163,11 @@ void Coin::draw() {
     glRotatef(angle, 0, 1, 0);
     angle += 6;
     gluCylinder(gluQ, cyl_base, cyl_top, cyl_height, cyl_slices, cyl_stacks);
+	glBindTexture(GL_TEXTURE_2D, names[0]);
     gluDisk(gluQ, disk_inner, disk_outer, disk_slices, disk_loops);
-    glTranslatef(0, 0, cyl_height);
+    glDisable(GL_TEXTURE_2D);
+	glTranslatef(0, 0, cyl_height);
+
     gluDisk(gluQ, disk_inner, disk_outer, disk_slices, disk_loops);
     glPopMatrix();
 }
