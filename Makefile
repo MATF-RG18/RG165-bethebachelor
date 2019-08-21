@@ -204,6 +204,33 @@ src/figure.cpp.s:
 	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.s
 .PHONY : src/figure.cpp.s
 
+src/image.o: src/image.cpp.o
+
+.PHONY : src/image.o
+
+# target to build an object file
+src/image.cpp.o:
+	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o
+.PHONY : src/image.cpp.o
+
+src/image.i: src/image.cpp.i
+
+.PHONY : src/image.i
+
+# target to preprocess a source file
+src/image.cpp.i:
+	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.i
+.PHONY : src/image.cpp.i
+
+src/image.s: src/image.cpp.s
+
+.PHONY : src/image.s
+
+# target to generate assembly for a file
+src/image.cpp.s:
+	$(MAKE) -f CMakeFiles/RG165_bethebachelor.dir/build.make CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.s
+.PHONY : src/image.cpp.s
+
 src/light.o: src/light.cpp.o
 
 .PHONY : src/light.o
@@ -276,6 +303,9 @@ help:
 	@echo "... src/figure.o"
 	@echo "... src/figure.i"
 	@echo "... src/figure.s"
+	@echo "... src/image.o"
+	@echo "... src/image.i"
+	@echo "... src/image.s"
 	@echo "... src/light.o"
 	@echo "... src/light.i"
 	@echo "... src/light.s"

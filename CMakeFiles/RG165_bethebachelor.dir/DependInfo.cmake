@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/jankovic/Documents/RG165-bethebachelor/src/callbackfuncs.cpp" "/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o"
   "/home/jankovic/Documents/RG165-bethebachelor/src/camera.cpp" "/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o"
   "/home/jankovic/Documents/RG165-bethebachelor/src/figure.cpp" "/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.o"
+  "/home/jankovic/Documents/RG165-bethebachelor/src/image.cpp" "/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o"
   "/home/jankovic/Documents/RG165-bethebachelor/src/light.cpp" "/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/RG165_bethebachelor.dir/src/light.cpp.o"
   "/home/jankovic/Documents/RG165-bethebachelor/src/main.cpp" "/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o"
   )

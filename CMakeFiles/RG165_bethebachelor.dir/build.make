@@ -96,9 +96,22 @@ CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jankovic/Documents/RG165-bethebachelor/src/figure.cpp -o CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.s
 
+CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o: CMakeFiles/RG165_bethebachelor.dir/flags.make
+CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o: src/image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o -c /home/jankovic/Documents/RG165-bethebachelor/src/image.cpp
+
+CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jankovic/Documents/RG165-bethebachelor/src/image.cpp > CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.i
+
+CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jankovic/Documents/RG165-bethebachelor/src/image.cpp -o CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.s
+
 CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o: CMakeFiles/RG165_bethebachelor.dir/flags.make
 CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o: src/camera.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o -c /home/jankovic/Documents/RG165-bethebachelor/src/camera.cpp
 
 CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.s: cmake_force
 
 CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o: CMakeFiles/RG165_bethebachelor.dir/flags.make
 CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o: src/callbackfuncs.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o -c /home/jankovic/Documents/RG165-bethebachelor/src/callbackfuncs.cpp
 
 CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.i: cmake_force
@@ -127,6 +140,7 @@ RG165_bethebachelor_OBJECTS = \
 "CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o" \
 "CMakeFiles/RG165_bethebachelor.dir/src/light.cpp.o" \
 "CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.o" \
+"CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o" \
 "CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o" \
 "CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o"
 
@@ -136,11 +150,12 @@ RG165_bethebachelor_EXTERNAL_OBJECTS =
 RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o
 RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/src/light.cpp.o
 RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.o
+RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o
 RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o
 RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o
 RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/build.make
 RG165_bethebachelor: CMakeFiles/RG165_bethebachelor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable RG165_bethebachelor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jankovic/Documents/RG165-bethebachelor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable RG165_bethebachelor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RG165_bethebachelor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

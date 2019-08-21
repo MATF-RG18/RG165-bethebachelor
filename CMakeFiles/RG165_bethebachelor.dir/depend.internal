@@ -15,6 +15,9 @@ CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.o
  /home/jankovic/Documents/RG165-bethebachelor/src/camera.hpp
  /home/jankovic/Documents/RG165-bethebachelor/src/figure.cpp
  /home/jankovic/Documents/RG165-bethebachelor/src/figure.hpp
+CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o
+ /home/jankovic/Documents/RG165-bethebachelor/src/image.cpp
+ /home/jankovic/Documents/RG165-bethebachelor/src/image.hpp
 CMakeFiles/RG165_bethebachelor.dir/src/light.cpp.o
  /home/jankovic/Documents/RG165-bethebachelor/src/light.cpp
  /home/jankovic/Documents/RG165-bethebachelor/src/light.hpp
@@ -22,4 +25,5 @@ CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o
  /home/jankovic/Documents/RG165-bethebachelor/src/callbackfuncs.hpp
  /home/jankovic/Documents/RG165-bethebachelor/src/camera.hpp
  /home/jankovic/Documents/RG165-bethebachelor/src/figure.hpp
+ /home/jankovic/Documents/RG165-bethebachelor/src/image.hpp
  /home/jankovic/Documents/RG165-bethebachelor/src/main.cpp

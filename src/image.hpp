@@ -1,5 +1,4 @@
-#ifndef __IMAGE_HPP__
-#define __IMAGE_HPP__
+
 
 /*
  * Dve strukture koje opisuju strukturu dva zaglavlja
@@ -36,6 +35,9 @@ typedef struct Image {
 /* Funkcija koja inicijalizuje strukturu i vraca pokazivac na nju. */
 Image *image_init(int width, int height);
 
+
+void image_read(Image *image, char *filename);
+
 /*
  * Funkcija koja oslobadja prostor u kojem su se cuvali
  * podaci o slici.
@@ -43,4 +45,4 @@ Image *image_init(int width, int height);
 void image_done(Image *image);
 
 
-#endif
+

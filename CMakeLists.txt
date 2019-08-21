@@ -9,8 +9,8 @@ set(SOURCE_FILES
         src/light.cpp
         src/figure.hpp
         src/figure.cpp
-        Makefile
-        README.md
+		src/image.cpp
+		src/image.hpp
         src/camera.cpp
         src/camera.hpp
         src/callbackfuncs.cpp

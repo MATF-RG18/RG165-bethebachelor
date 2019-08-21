@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/RG165_bethebachelor.dir/src/main.cpp.o"
   "CMakeFiles/RG165_bethebachelor.dir/src/light.cpp.o"
   "CMakeFiles/RG165_bethebachelor.dir/src/figure.cpp.o"
+  "CMakeFiles/RG165_bethebachelor.dir/src/image.cpp.o"
   "CMakeFiles/RG165_bethebachelor.dir/src/camera.cpp.o"
   "CMakeFiles/RG165_bethebachelor.dir/src/callbackfuncs.cpp.o"
   "RG165_bethebachelor.pdb"
