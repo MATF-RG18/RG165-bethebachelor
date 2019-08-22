@@ -147,8 +147,6 @@ void Plane::draw(){
     glTranslatef(0, 0, z_pos/1.8);
   
 	glScalef(1.5, 0.05, 1);
-	std::cout << x_pos << std::endl;
-	std::cout << z_pos << std::endl;
 
 	
 	float tmp_y = 0;
@@ -156,16 +154,16 @@ void Plane::draw(){
 	glBindTexture(GL_TEXTURE_2D, parquet);
 	glBegin(GL_POLYGON);
 		glTexCoord2f(0, 0);
-		glVertex3f(-3, tmp_y, 5);
+		glVertex3f(-3, tmp_y, 15);
 		glTexCoord2f(1, 0);
-		glVertex3f(3, tmp_y, 5);
+		glVertex3f(3, tmp_y, 15);
 		glTexCoord2f(1, 1);
-		glVertex3f(3, tmp_y, -150);
+		glVertex3f(3, tmp_y, -250);
 		glTexCoord2f(0, 1);
-		glVertex3f(-3, tmp_y, -150);
+		glVertex3f(-3, tmp_y, -250);
 	glEnd();
-	glPopMatrix();
 	glDisable(GL_TEXTURE_2D);
+	glPopMatrix();
 	//glutSolidCube(4);
     
 	
