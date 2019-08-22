@@ -18,13 +18,13 @@ duže na istoj u nadi da će doći do kraja
 i završiti osnovne studije.
 
 ## Instalacija :construction:
->- Potrebno je na računari imati GL/glut biblioteke kako 
-bi mogli kompilirati izvorne datoteke. 
+>- Potrebno je na računari imati GL/glut biblioteke kao i alat cmake kako 
+biste mogli kompilirati izvorne datoteke. 
 >- Instalacija biblioteka `sudo apt-get install binutils-gold freeglut3 freeglut3-dev `
 >- Nakon što preuzmete ceo repozitorijum 
 neophodno je da se pozicionirate u koreni
 direktorijum projekta i kucanjem komandi:
-`mkdir build` <br/> 'cd build' 
+`mkdir build` <br/> `cd build` 
  <br/>  `cmake ..` <br/>  `make` <br/>
 kreiraće se izvršiva datoteka.
 
