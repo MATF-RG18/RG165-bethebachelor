@@ -23,7 +23,9 @@ bi mogli kompilirati izvorne datoteke.
 >- Instalacija biblioteka `sudo apt-get install binutils-gold freeglut3 freeglut3-dev `
 >- Nakon što preuzmete ceo repozitorijum 
 neophodno je da se pozicionirate u koreni
-direktorijum projekta i kucanjem komandi: <br/>  `cmake .` <br/>  `make` <br/>
+direktorijum projekta i kucanjem komandi:
+`mkdir build` <br/> 'cd build' 
+ <br/>  `cmake ..` <br/>  `make` <br/>
 kreiraće se izvršiva datoteka.
 
 
