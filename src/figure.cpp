@@ -20,6 +20,7 @@ int colour_counter = 0;
 int direction_keeper = 0;
 extern GLuint names[40];
 
+extern GLuint parquet;
 
 
 /* Funckija za iscrtavanje figurice,
@@ -132,6 +133,7 @@ void Student::draw() {
         timer_activeX = direction_keeper;
         glutTimerFunc(50, on_timer, 0);
     }
+
 }
 
 
@@ -139,30 +141,33 @@ void change_colour(void) {
     colour_counter = (colour_counter + 1) % 6                                                                                                                                                           ;
 }
 
-extern GLuint parquet;
 void Plane::draw(){
     glPushMatrix();
-    glTranslatef(0, 0, z_pos);
-    glScalef(1.5, .05, 45);
+	  
+    glTranslatef(0, 0, z_pos/1.8);
+  
+	glScalef(1.5, 0.05, 1);
 	std::cout << x_pos << std::endl;
 	std::cout << z_pos << std::endl;
-	//glutSolidCube(4);
-	float tmp_y = -2;
+
+	
+	float tmp_y = 0;
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, parquet);
 	glBegin(GL_POLYGON);
 		glTexCoord2f(0, 0);
-		glVertex3f(-3, tmp_y, 1000);
+		glVertex3f(-3, tmp_y, 5);
 		glTexCoord2f(1, 0);
-		glVertex3f(3, tmp_y, 1000);
+		glVertex3f(3, tmp_y, 5);
 		glTexCoord2f(1, 1);
-		glVertex3f(3, tmp_y, -1000);
+		glVertex3f(3, tmp_y, -150);
 		glTexCoord2f(0, 1);
-		glVertex3f(-3, tmp_y, -1000);
+		glVertex3f(-3, tmp_y, -150);
 	glEnd();
-    
+	glPopMatrix();
 	glDisable(GL_TEXTURE_2D);
-    glPopMatrix();
+	//glutSolidCube(4);
+    
 	
 }
 
