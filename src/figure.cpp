@@ -139,15 +139,31 @@ void change_colour(void) {
     colour_counter = (colour_counter + 1) % 6                                                                                                                                                           ;
 }
 
-
+extern GLuint parquet;
 void Plane::draw(){
     glPushMatrix();
     glTranslatef(0, 0, z_pos);
     glScalef(1.5, .05, 45);
-
-    glutSolidCube(4);
-
+	std::cout << x_pos << std::endl;
+	std::cout << z_pos << std::endl;
+	//glutSolidCube(4);
+	float tmp_y = -2;
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, parquet);
+	glBegin(GL_POLYGON);
+		glTexCoord2f(0, 0);
+		glVertex3f(-3, tmp_y, 1000);
+		glTexCoord2f(1, 0);
+		glVertex3f(3, tmp_y, 1000);
+		glTexCoord2f(1, 1);
+		glVertex3f(3, tmp_y, -1000);
+		glTexCoord2f(0, 1);
+		glVertex3f(-3, tmp_y, -1000);
+	glEnd();
+    
+	glDisable(GL_TEXTURE_2D);
     glPopMatrix();
+	
 }
 
 void Coin::draw() {

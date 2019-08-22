@@ -45,7 +45,7 @@ std::vector<std::string> professors = {
         "jovanaKovacevic", "zoranRakic", "predragJanicic", "slavkoMoconja", "zoranPavlovic",
         "jovanaKovacevic", "aleksandarVucic", "predragJanicic", "zoranStanic", "zoranPavlovic",
         "tijanaSukilovic", "miroslavMaric", "miodragZivkovic", "branislavPrvulovic", "vladimirFilipovic",
-        "zoranPavlovic", "aleksandraMarinkovic", "aleksandarKartelj", "vesnaMarinkovic", "andjelkaKovacevic",
+        "zoranPetrovic", "aleksandraMarinkovic", "aleksandarKartelj", "vesnaMarinkovic", "andjelkaKovacevic",
         "nenadMaric", "aleksandraDelic", "milanBankovic", "milanJovanovic", "vesnaMarinkovic",
         "bojanaMilosevic", "nenadMaric", "predragJanicic", "milenaJanicic", "filipMaric",
         "aleksandarKartelj", "aleksandarKartelj", "nenadMaric", "sasaMalkov", "aleksandarSavic",
@@ -92,9 +92,9 @@ void fill_vector_of_courses(std::vector<Coin*>& vYear) {
         float x_coord = distX(rd);
         if (vYear[i] != nullptr and !vYear[i]->isPassed()) {
             delete vYear[i];
-            vYear[i] = new Coin(courses[sub_inx], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord, professors[sub_inx++], i);
+            vYear[i] = new Coin(courses[sub_inx], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord, professors[sub_inx], sub_inx++);
         } else if (vYear[i] == nullptr) {
-            vYear[i] = new Coin(courses[sub_inx], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord, professors[sub_inx++], i);
+            vYear[i] = new Coin(courses[sub_inx], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord, professors[sub_inx], sub_inx++);
         }
         else
             sub_inx++;
@@ -319,7 +319,7 @@ void init_callbacks(void) {
 
 
 GLuint names[40];
-
+GLuint parquet;
 
 void initialize_texture() {
 	Image* image;
@@ -327,7 +327,7 @@ void initialize_texture() {
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glGenTextures(40, names);
-
+	glGenTextures(1, &parquet);
 
     for (int i = 0; i < professors.size(); i++) {
         image = image_init(0, 0);
@@ -348,6 +348,26 @@ void initialize_texture() {
                      GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
         image_done(image);
     }
+	
+	
+	
+	image = image_init(0, 0);
+	std::string name = "../src/images/parket.bmp";
+	image_read(image, strdup(name.c_str()));
+
+	glBindTexture(GL_TEXTURE_2D, parquet);
+	glTexParameteri(GL_TEXTURE_2D,
+					GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D,
+					GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D,
+					GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,
+					GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+				 image->width, image->height, 0,
+				 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+	image_done(image);
 
 
 }
