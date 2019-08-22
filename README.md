@@ -37,7 +37,7 @@ kreiraće se izvršiva datoteka.
 >* <button>q</button>&nbsp;&nbsp; Skok
 
 ## Prikaz
-![Prikaz](screenshots/1_report.png)
+![Prikaz](screenshots/5_report.png)
 
 
 ---
