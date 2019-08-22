@@ -1,6 +1,7 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <random>
+#include <memory.h>
 #include "figure.hpp"
 #include "light.hpp"
 #include "callbackfuncs.hpp"
@@ -35,12 +36,23 @@ std::vector<std::string> courses = {
         "ALG", "A3", "OOP", "KIAA", "ASTRO",
         "RBP", "UNM", "PPJ", "V", "RG",
         "S", "IP1", "VI", "PP", "KK",
-        "RM", "RI", "DS3", "RS", "IP2"
+        "RM", "RI", "IP2", "RS", "DS3"
         "UUTZ", "FP", "PROJBP", "UIDT", "PZV"
 };
 
 
-GLuint names[2];
+std::vector<std::string> professors = {
+        "jovanaKovacevic", "zoranRakic", "predragJanicic", "slavkoMoconja", "zoranPavlovic",
+        "jovanaKovacevic", "aleksandarVucic", "predragJanicic", "zoranStanic", "zoranPavlovic",
+        "tijanaSukilovic", "miroslavMaric", "miodragZivkovic", "branislavPrvulovic", "vladimirFilipovic",
+        "zoranPavlovic", "aleksandraMarinkovic", "aleksandarKartelj", "vesnaMarinkovic", "andjelkaKovacevic",
+        "nenadMaric", "aleksandraDelic", "milanBankovic", "milanJovanovic", "vesnaMarinkovic",
+        "bojanaMilosevic", "nenadMaric", "predragJanicic", "milenaJanicic", "filipMaric",
+        "aleksandarKartelj", "aleksandarKartelj", "nenadMaric", "sasaMalkov", "aleksandarSavic",
+        "lenkaZivadinovic", "sasaMalkov", "sasaMalkov", "filipMaric", "vladimirFilipovic"
+};
+
+
 
 std::vector<Coin*> vYear1(10);
 std::vector<Coin*> vYear2(10);
@@ -80,9 +92,9 @@ void fill_vector_of_courses(std::vector<Coin*>& vYear) {
         float x_coord = distX(rd);
         if (vYear[i] != nullptr and !vYear[i]->isPassed()) {
             delete vYear[i];
-            vYear[i] = new Coin(courses[sub_inx++], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord);
+            vYear[i] = new Coin(courses[sub_inx], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord, professors[sub_inx++], i);
         } else if (vYear[i] == nullptr) {
-            vYear[i] = new Coin(courses[sub_inx++], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord);
+            vYear[i] = new Coin(courses[sub_inx], 0, .3, 20, 20, .3, .3, .2, 20, 20, z_coord, x_coord, professors[sub_inx++], i);
         }
         else
             sub_inx++;
@@ -95,8 +107,10 @@ void on_reshape(int width, int height) {
 }
 
 
-
+extern GLuint head;
 void on_display(void) {
+
+
     setLight();
     setMaterial();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -113,9 +127,11 @@ void on_display(void) {
     glLoadIdentity();
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+
+
+
     plane.draw();
     student.draw();
-
 
 
     draw_coins();
@@ -123,10 +139,7 @@ void on_display(void) {
 
     std::string buffer("Ostalo ti je jos ");
     buffer += std::to_string(courses_left) + " ispita do kraja.\n";
-    for (auto course: vYear1) {
-        if (!course->isPassed())
-            buffer += course->getName() + "\n";
-    }
+
     draw_score(buffer.data(), buffer.size(), 0, 580);
     glPopMatrix();
     glutSwapBuffers();
@@ -305,28 +318,36 @@ void init_callbacks(void) {
 }
 
 
+GLuint names[40];
+
 
 void initialize_texture() {
 	Image* image;
 	
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-    glGenTextures(2, names);
-    image = image_init(0, 0);
-	image_read(image, "src/images/filipMaric.bmp");
+    glGenTextures(40, names);
 
-	
-	glBindTexture(GL_TEXTURE_2D, names[0]);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_T, GL_CLAMP);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
-                 image->width, image->height, 0,
-                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
-	image_done(image);
+
+    for (int i = 0; i < professors.size(); i++) {
+        image = image_init(0, 0);
+        std::string name = "../src/images/" + professors[i] + ".bmp";
+        image_read(image, strdup(name.c_str()));
+
+        glBindTexture(GL_TEXTURE_2D, names[i]);
+        glTexParameteri(GL_TEXTURE_2D,
+                        GL_TEXTURE_WRAP_S, GL_CLAMP);
+        glTexParameteri(GL_TEXTURE_2D,
+                        GL_TEXTURE_WRAP_T, GL_CLAMP);
+        glTexParameteri(GL_TEXTURE_2D,
+                        GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D,
+                        GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                     image->width, image->height, 0,
+                     GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+        image_done(image);
+    }
+
+
 }

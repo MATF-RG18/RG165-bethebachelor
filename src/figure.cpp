@@ -18,7 +18,7 @@ float x_pos = 0, z_pos = -0.1;
 float lracceleration = 0.06;
 int colour_counter = 0;
 int direction_keeper = 0;
-extern GLuint names[2];
+extern GLuint names[40];
 
 
 
@@ -54,7 +54,11 @@ void Student::draw() {
     glLightfv(GL_LIGHT0, GL_SPECULAR, head_col);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse_coeffs[colour_counter]);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular_coeffs);
-    glutSolidSphere(.15, 20, 20);
+
+
+    glutSolidSphere(.15, 100, 100);
+
+
 
     GLfloat body_col[4] = {.4, 1, 1, 0};
 
@@ -137,24 +141,27 @@ void change_colour(void) {
 
 
 void Plane::draw(){
-
     glPushMatrix();
     glTranslatef(0, 0, z_pos);
     glScalef(1.5, .05, 45);
 
     glutSolidCube(4);
+
     glPopMatrix();
 }
 
 void Coin::draw() {
     GLfloat coin_color[4] = {1, 1, 0, 0};
+
 	glEnable(GL_TEXTURE_2D);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, coin_color);
     glLightfv(GL_LIGHT0, GL_AMBIENT, coin_color);
     glLightfv(GL_LIGHT0, GL_SPECULAR, coin_color);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, coin_color);
+
     glPushMatrix();
     GLUquadric* gluQ = gluNewQuadric();
+
     glShadeModel(GL_SMOOTH);
     glTranslatef(x_position, 0.42, z_position);
     x_front = x_position;
@@ -163,22 +170,32 @@ void Coin::draw() {
     glRotatef(angle, 0, 1, 0);
     angle += 6;
     gluCylinder(gluQ, cyl_base, cyl_top, cyl_height, cyl_slices, cyl_stacks);
-	glBindTexture(GL_TEXTURE_2D, names[0]);
-    gluDisk(gluQ, disk_inner, disk_outer, disk_slices, disk_loops);
-    glDisable(GL_TEXTURE_2D);
-	glTranslatef(0, 0, cyl_height);
+
+
+    glBindTexture(GL_TEXTURE_2D, names[inx]);
+    gluQuadricDrawStyle(gluQ, GL_FILL);
+    gluQuadricTexture(gluQ, GL_TRUE);
+    gluQuadricNormals(gluQ, GLU_SMOOTH);
 
     gluDisk(gluQ, disk_inner, disk_outer, disk_slices, disk_loops);
+
+    glTranslatef(0, 0, cyl_height);
+
+    gluDisk(gluQ, disk_inner, disk_outer, disk_slices, disk_loops);
+    glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 }
 
 Coin::Coin(const std::string &name, GLdouble disk_inner, GLdouble disk_outer, GLuint disk_slices,
                   GLuint disk_loops, GLdouble cyl_base, GLdouble cyl_top, GLdouble cyl_height, GLuint cyl_slices,
-                  GLuint cyl_stacks, float z, float x)
+                  GLuint cyl_stacks, float z, float x, std::string s, unsigned u)
         : name(name), disk_inner(disk_inner),
            disk_outer(disk_outer), disk_slices(disk_slices), disk_loops(disk_loops), cyl_base(cyl_base),
            cyl_top(cyl_top), cyl_height(cyl_height), cyl_slices(cyl_slices), cyl_stacks(cyl_stacks),
-            z_position(z), x_position(x){}
+            z_position(z), x_position(x), professor(s), inx(u){}
+
+
+
 
 extern unsigned courses_left;
 bool Coin::touched(GLdouble student_x_front, GLdouble student_x_back, GLdouble student_y_front,

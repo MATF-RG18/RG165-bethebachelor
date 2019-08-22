@@ -11,8 +11,10 @@ void init(int , char**);
 
 int main(int argc, char** argv) {
     init(argc, argv);
-    init_callbacks();
-	initialize_texture();
+    
+	init_callbacks();
+
+	initialize_texture(); 
     glutMainLoop();
     return 0;
 }
@@ -27,5 +29,6 @@ void init(int argc, char** argv) {
     glutCreateWindow(argv[0]);
 	glutFullScreen();
     glClearColor(0, 0, 0, 0);
-    glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
+
 }
