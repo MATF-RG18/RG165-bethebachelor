@@ -11,11 +11,11 @@ extern GLfloat diffuse_coeffs[7][4];
 
 extern GLfloat specular_coeffs[4];
 Camera camera;
-int look_id = 3;
+int look_id = 1;
 int timer_activeX = 0, timer_activeZ = 0;
 int jump_active = 0;
 float x_pos = 0, z_pos = -0.1;
-float lracceleration = 0.06;
+float lracceleration = 0.08;
 int colour_counter = 0;
 int direction_keeper = 0;
 extern GLuint names[40];

@@ -1,4 +1,5 @@
-
+#ifndef __IMAGE_HPP_
+#define __IMAGE_HPP_
 
 /*
  * Dve strukture koje opisuju strukturu dva zaglavlja
@@ -46,3 +47,4 @@ void image_done(Image *image);
 
 
 
+#endif

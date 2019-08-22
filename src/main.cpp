@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 #include <time.h>
 #include "callbackfuncs.hpp"
-
+#include "functions.hpp"
 
 
 

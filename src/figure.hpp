@@ -3,7 +3,7 @@
 
 #include "camera.hpp"
 #include <string>
-#include "figure.hpp"
+#include <GL/glut.h>
 
 class Plane {
 public:
