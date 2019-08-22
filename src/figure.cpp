@@ -144,7 +144,7 @@ void change_colour(void) {
 void Plane::draw(){
     glPushMatrix();
 	  
-    glTranslatef(0, 0, z_pos/1.8);
+    glTranslatef(0, 0, z_pos/3);
   
 	glScalef(1.5, 0.05, 1);
 
@@ -152,16 +152,18 @@ void Plane::draw(){
 	float tmp_y = 0;
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, parquet);
-	glBegin(GL_POLYGON);
-		glTexCoord2f(0, 0);
-		glVertex3f(-3, tmp_y, 15);
-		glTexCoord2f(1, 0);
-		glVertex3f(3, tmp_y, 15);
-		glTexCoord2f(1, 1);
-		glVertex3f(3, tmp_y, -250);
-		glTexCoord2f(0, 1);
-		glVertex3f(-3, tmp_y, -250);
-	glEnd();
+	for (int i = 0; i < 300; i++) {
+		glBegin(GL_POLYGON);
+			glTexCoord2f(0, 0);
+			glVertex3f(-3, tmp_y, 15 - i * 25);
+			glTexCoord2f(1, 0);
+			glVertex3f(3, tmp_y, 15 - i * 25);
+			glTexCoord2f(1, 1);
+			glVertex3f(3, tmp_y, -10 - i * 25);
+			glTexCoord2f(0, 1);
+			glVertex3f(-3, tmp_y, -10 - i * 25);
+		glEnd();
+	}
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 	//glutSolidCube(4);
