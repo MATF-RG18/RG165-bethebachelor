@@ -139,7 +139,7 @@ void Student::draw() {
 
 
 void change_colour(void) {
-    colour_counter = (colour_counter + 1) % 6                                                                                                                                                           ;
+    colour_counter = (colour_counter + 1) % 6;
 }
 
 void Plane::draw(){

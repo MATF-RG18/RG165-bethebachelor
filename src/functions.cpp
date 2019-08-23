@@ -14,7 +14,7 @@ bool game_over = false;
 GLuint names[40];
 GLuint parquet;
 GLuint boban_pic;
-
+GLuint matf_pic;
 
 
 std::vector<Coin*> vYear1(10);
@@ -68,7 +68,8 @@ void initialize_texture() {
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glGenTextures(40, names);
     glGenTextures(1, &parquet);
-
+	glGenTextures(1, &boban_pic);
+	glGenTextures(1, &matf_pic);
     for (int i = 0; i < professors.size(); i++) {
         image = image_init(0, 0);
         std::string name = "../src/images/" + professors[i] + ".bmp";
@@ -128,6 +129,26 @@ void initialize_texture() {
                  image->width, image->height, 0,
                  GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
     image_done(image);
+
+	image = image_init(0, 0);
+    std::string matf_logo = "../src/images/welcome.bmp";
+    image_read(image, strdup(matf_logo.c_str()));
+
+    glBindTexture(GL_TEXTURE_2D, matf_pic);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+    image_done(image);
+
+
 
 
 }
@@ -280,3 +301,17 @@ void test_collision(std::vector<Coin*>& vYear) {
     }
 }
 
+
+void show_start_scene() {
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, matf_pic);
+	glTexCoord2f(0, 0);
+	glVertex3f(0, 0, 0);
+	glTexCoord2f(1, 0);
+	glVertex3f(1, 0, 0);
+	glTexCoord2f(1, 1);
+	glVertex3f(1, 1, 0);
+	glTexCoord2f(0, 1);
+	glVertex3f(0, 1, 0);
+	glDisable(GL_TEXTURE_2D);
+}

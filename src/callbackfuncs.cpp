@@ -27,6 +27,9 @@ double forward_acceleration;
 
 float double_speed = 1;
 
+STATE state = start;
+
+
 extern bool on_head;
 void on_reshape(int width, int height) {
     window_width = width;
@@ -58,31 +61,31 @@ void on_display(void) {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
-	plane.draw();
-    
-	student.draw();
+	if (state == game) {
+		plane.draw();
+    	
+		student.draw();
 
-    draw_coins();
+    	draw_coins();
 
-	boban.draw();
-
-
-    if (!on_head)
-	    boban.doesStudentWalkOnMyHead(student);
-	
-   
+		boban.draw();
 
 
+    	if (!on_head)
+		    boban.doesStudentWalkOnMyHead(student);
 
 
-    std::string buffer("Ostalo ti je jos ");
-    buffer += std::to_string(courses_left) + " ispita do kraja.\n";
+    	std::string buffer("Ostalo ti je jos ");
+    	buffer += std::to_string(courses_left) + " ispita do kraja.\n";
 
-    std::string buffer2("Tvoj dug je: ");
-    buffer2 += std::to_string(student.getDebt()) + "rsd.";
+    	std::string buffer2("Tvoj dug je: ");
+    	buffer2 += std::to_string(student.getDebt()) + "rsd.";
 
-    draw_score(buffer2.data(), buffer2.size(),  0, 440);
-    draw_score(buffer.data(), buffer.size(), 0, 580);
+    	draw_score(buffer2.data(), buffer2.size(),  0, 440);
+    	draw_score(buffer.data(), buffer.size(), 0, 580);
+	} else if (state == start) {
+		show_start_scene();
+	}
     glPopMatrix();
     glutSwapBuffers();
 }
@@ -120,6 +123,10 @@ void on_keyboard(unsigned char key, int x, int y) {
         case 32:
             double_speed = 1.8;
             break;
+		case 13:
+			state = game;
+			glutPostRedisplay();
+			break;
         case '1':
             if (look_id != 1)
                 glutPostRedisplay();
@@ -145,7 +152,7 @@ void on_timer(int value) {
     if (!jump_active) {
         x_pos += (timer_activeX * lracceleration);
         std::cout << "DODAO i ";
-        //glutPostRedisplay();
+        glutPostRedisplay();
     }
     if (x_pos <= -3 || x_pos >= 3)
         exit(EXIT_FAILURE);
@@ -172,7 +179,6 @@ void on_timer2(int value) {
             forward_acceleration = .31; break;
     }
     z_pos += (-timer_activeZ * forward_acceleration * double_speed);
-	ind_for_colors += (-timer_activeZ * forward_acceleration * double_speed);
     glutPostRedisplay();
     if (timer_activeZ != 0)
         glutTimerFunc(50, on_timer2, 0);
