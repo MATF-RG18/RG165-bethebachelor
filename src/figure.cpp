@@ -3,8 +3,7 @@
 #include <GL/glut.h>
 #include <math.h>
 #include "callbackfuncs.hpp"
-
-
+#include "functions.hpp"
 
 
 extern GLfloat diffuse_coeffs[7][4];
@@ -27,24 +26,26 @@ extern GLuint parquet;
  * tj loptice u pocetnoj fazi
  */
 
-
+extern bool on_head;
 float ind_for_colors = 0;
 float u = 0;
+float y_pos = 1.4;
 void Student::draw() {
 
     glPushMatrix();
 
     z_front = z_pos;
     x_front = x_pos;
+    y_front = 0.71;
 
     if (jump_active) {
-        y_front = sin(u);
-        glTranslatef(x_pos, 1.4 + 2.8 * sin(u), z_pos);
+        y_front += 1.3 * sin(u);
+        glTranslatef(x_pos, y_pos + 3 * sin(u), z_pos);
         u += .1;
     }
     else {
         y_front = 0;
-        glTranslatef(x_pos, 1.4, z_pos);
+        glTranslatef(x_pos, y_pos, z_pos);
     }
 
     angle += 6;
@@ -125,8 +126,8 @@ void Student::draw() {
 
     glPopMatrix();
 
-
-    if (jump_active == 1 and u >= 3.14) {
+    std::cout << x_pos << std::endl;
+    if ((jump_active == 1 and u >= 3.14) or on_head) {
 
         jump_active = 0;
         u = 0;

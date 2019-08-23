@@ -7,7 +7,9 @@
 bool gen_coins1 = false, gen_coins2 = false, gen_coins3 = false, gen_coins4 = false;
 int increment = 0;
 int sub_inx = 0;
+unsigned polozeno_ove_godine = 0, ostalo_ispita_za_ovu_godinu = 10;
 extern float z_pos;
+bool game_over = false;
 
 GLuint names[40];
 GLuint parquet;
@@ -130,7 +132,7 @@ void initialize_texture() {
 
 }
 
-
+extern Student student;
 void draw_coins() {
     bool gen_coins;
     std::vector<Coin*>* vYear;
@@ -172,6 +174,19 @@ void draw_coins() {
             }
         }
     } else {
+        ostalo_ispita_za_ovu_godinu = 10 - polozeno_ove_godine;
+        if (ostalo_ispita_za_ovu_godinu > 2) {
+            student.setDebt(student.getDebt() + 144000);
+        } else {
+            student.setDebt(student.getDebt() + ostalo_ispita_za_ovu_godinu * 2350);
+        }
+
+        if (student.getDebt() > 500000) {
+            game_over = true;
+            exit(EXIT_FAILURE);
+        }
+
+        polozeno_ove_godine = 0;
         change_colour();
         increment += 55;
         bool finishedYear = true;
@@ -181,6 +196,7 @@ void draw_coins() {
 
         if (finishedYear) {
             year = ++year;
+            ostalo_ispita_za_ovu_godinu = 10;
         }
         switch (year) {
             case first:
@@ -254,12 +270,13 @@ void fill_vector_of_courses(std::vector<Coin*>& vYear) {
 
 
 
-extern Student student;
 void test_collision(std::vector<Coin*>& vYear) {
     for (auto course: vYear) {
         if (course->touched(student.x_front, student.x_back, student.y_front, student.y_back,
-                            student.z_front, student.z_back))
+                            student.z_front, student.z_back)) {
             course->confirmPassed();
+            polozeno_ove_godine++;
+        }
     }
 }
 

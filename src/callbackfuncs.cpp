@@ -27,7 +27,7 @@ double forward_acceleration;
 
 float double_speed = 1;
 
-
+extern bool on_head;
 void on_reshape(int width, int height) {
     window_width = width;
     window_height = height;
@@ -61,20 +61,27 @@ void on_display(void) {
 	plane.draw();
     
 	student.draw();
-	
-	
+
+    draw_coins();
+
 	boban.draw();
-	
-	
+
+
+    if (!on_head)
+	    boban.doesStudentWalkOnMyHead(student);
 	
    
 
-    draw_coins();
+
 
 
     std::string buffer("Ostalo ti je jos ");
     buffer += std::to_string(courses_left) + " ispita do kraja.\n";
 
+    std::string buffer2("Tvoj dug je: ");
+    buffer2 += std::to_string(student.getDebt()) + "rsd.";
+
+    draw_score(buffer2.data(), buffer2.size(),  0, 440);
     draw_score(buffer.data(), buffer.size(), 0, 580);
     glPopMatrix();
     glutSwapBuffers();
@@ -103,10 +110,12 @@ void on_keyboard(unsigned char key, int x, int y) {
             timer_activeZ = 0;
             break;
         case 'q': case 'Q':
-            jump_active = 1;
-            direction_keeper = timer_activeX;
-            timer_activeX = 0;
-            glutPostRedisplay();
+            if (!jump_active) {
+                jump_active = 1;
+                direction_keeper = timer_activeX;
+                timer_activeX = 0;
+                glutPostRedisplay();
+            }
             break;
         case 32:
             double_speed = 1.8;
@@ -133,13 +142,18 @@ void on_keyboard(unsigned char key, int x, int y) {
 void on_timer(int value) {
     if (value != 0)
         return;
-    x_pos += (timer_activeX * lracceleration);
-    glutPostRedisplay();
+    if (!jump_active) {
+        x_pos += (timer_activeX * lracceleration);
+        std::cout << "DODAO i ";
+        //glutPostRedisplay();
+    }
     if (x_pos <= -3 || x_pos >= 3)
         exit(EXIT_FAILURE);
 
-    if (timer_activeX and timer_activeZ)
+    if (timer_activeX and timer_activeZ) {
         glutTimerFunc(50, on_timer, 0);
+        std::cout << "POZVAN TIMER" << std::endl;
+    }
 
 }
 

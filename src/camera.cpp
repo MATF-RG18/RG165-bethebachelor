@@ -3,6 +3,7 @@
 //
 
 #include <GL/glut.h>
+#include <cmath>
 #include "camera.hpp"
 
 #define FIRST_VIEW (1)
@@ -14,15 +15,15 @@ Camera::Camera(double eyeX, double eyeY, double eyeZ, double centerX, double cen
                double upY, double upZ) : eyeX(eyeX), eyeY(eyeY), eyeZ(eyeZ), centerX(centerX), centerY(centerY),
                                          centerZ(centerZ), upX(upX), upY(upY), upZ(upZ) {}
 
-extern float z_pos;
+extern float z_pos, y_pos, u;
 void Camera::setLook(int id) {
     switch (id) {
         case FIRST_VIEW:
-            setEyeX(0); setEyeY(2); setEyeZ(5 + z_pos);
+            setEyeX(0); setEyeY(0.6 + y_pos); setEyeZ(5 + z_pos);
             setCenterX(0); setCenterY(0); setCenterZ(z_pos-2);
             break;
         case SECOND_VIEW:
-            setEyeX(0); setEyeY(3); setEyeZ(z_pos + 3);
+            setEyeX(0); setEyeY(2.2 +  y_pos); setEyeZ(z_pos + 3);
             setCenterX(0); setCenterY(0); setCenterZ(z_pos-2);
             break;
         case THIRD_VIEW:
@@ -30,7 +31,7 @@ void Camera::setLook(int id) {
             setCenterX(0); setCenterY(0); setCenterZ(z_pos + 1.5);
             break;
 		case FOURTH_VIEW:
-			setEyeX(0); setEyeY(6); setEyeZ(3+z_pos);
+			setEyeX(0); setEyeY(1.6 + 3*sin(u)); setEyeZ(3+z_pos);
             setCenterX(0); setCenterY(0); setCenterZ(z_pos-2);
     }
     setUpX(0); setUpY(1); setUpZ(0);

@@ -27,7 +27,8 @@ void init(int argc, char** argv) {
     
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
-	glutFullScreen();
+	//glutFullScreen();
+    glutInitWindowSize(300, 300);
     glClearColor(0, 0, 0, 0);
 	glEnable(GL_DEPTH_TEST);
 

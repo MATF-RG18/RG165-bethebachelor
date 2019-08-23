@@ -14,11 +14,18 @@ class Student {
     GLdouble angle = 0;
     GLdouble legs_angle = 0;
     int8_t  direction = 1;
+    unsigned debt = 0;
 public:
     GLdouble x_front, x_back;
     GLdouble y_front, y_back;
     GLdouble z_front, z_back;
     void draw();
+    unsigned getDebt() {
+        return debt;
+    }
+    void setDebt(unsigned x) {
+        debt = x;
+    }
 };
 
 
