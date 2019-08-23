@@ -2,13 +2,15 @@
 #define __BOBAN_HPP__ 1
 
 #include <GL/gl.h>
+#include "figure.hpp"
 
 
 class Boban {
 public:
 	void draw();
+	bool didStudentPunchMeInTheFace(Student& st);
 private:
-	GLdouble x_position = 0, y_postion = 0, z_position = -3;
+	GLdouble x_position = 0, y_position = 2.5, z_position = -10;
 	double radius = 2;
 };
 

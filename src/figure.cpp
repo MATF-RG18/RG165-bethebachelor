@@ -39,7 +39,7 @@ void Student::draw() {
 
     if (jump_active) {
         y_front = sin(u);
-        glTranslatef(x_pos, 1.4 + sin(u), z_pos);
+        glTranslatef(x_pos, 1.4 + 2.8 * sin(u), z_pos);
         u += .1;
     }
     else {

@@ -11,6 +11,7 @@ extern float z_pos;
 
 GLuint names[40];
 GLuint parquet;
+GLuint boban_pic;
 
 
 
@@ -98,9 +99,29 @@ void initialize_texture() {
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_T, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+    image_done(image);
+
+
+
+	image = image_init(0, 0);
+    std::string boban_name = "../src/images/boban_kao.bmp";
+    image_read(image, strdup(boban_name.c_str()));
+
+    glBindTexture(GL_TEXTURE_2D, boban_pic);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
                  image->width, image->height, 0,
                  GL_RGB, GL_UNSIGNED_BYTE, image->pixels);

@@ -6,6 +6,7 @@
 #include "light.hpp"
 #include "callbackfuncs.hpp"
 #include "functions.hpp"
+#include "boban.hpp"
 
 
 
@@ -19,6 +20,7 @@ int window_width, window_height;
 extern float ind_for_colors;
 Plane plane;
 Student student;
+Boban boban;
 unsigned courses_left = 40;
 
 double forward_acceleration;
@@ -47,17 +49,25 @@ void on_display(void) {
             window_width / (float)window_height,
             1, z_pos
     );
-    camera.setLook(look_id);
+	if (jump_active) 
+		camera.setLook(FOURTH_VIEW);
+	else	
+		camera.setLook(look_id);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
-
-
-    plane.draw();
-    student.draw();
-
+	plane.draw();
+    
+	student.draw();
+	
+	
+	boban.draw();
+	
+	
+	
+   
 
     draw_coins();
 
@@ -115,7 +125,6 @@ void on_keyboard(unsigned char key, int x, int y) {
             if (look_id != 3)
                 glutPostRedisplay();
             look_id = THIRD_VIEW;
-
             break;
     }
 }
