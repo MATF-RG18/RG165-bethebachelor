@@ -195,29 +195,26 @@ void draw_coins() {
             }
         }
     } else {
-        ostalo_ispita_za_ovu_godinu = 10 - polozeno_ove_godine;
-        if (ostalo_ispita_za_ovu_godinu > 2) {
+		bool finishedYear = true;
+        
+        change_colour();
+        increment += 55;
+        for (auto it: *vYear)
+            if(!it->isPassed())
+                finishedYear = false;
+
+		
+		ostalo_ispita_za_ovu_godinu = 10 - polozeno_ove_godine;
+        if (ostalo_ispita_za_ovu_godinu > 2 and !finishedYear) {
             student.setDebt(student.getDebt() + 144000);
         } else {
             student.setDebt(student.getDebt() + ostalo_ispita_za_ovu_godinu * 2350);
         }
 
-        if (student.getDebt() > 500000) {
-            game_over = true;
-            exit(EXIT_FAILURE);
-        }
-
-        polozeno_ove_godine = 0;
-        change_colour();
-        increment += 55;
-        bool finishedYear = true;
-        for (auto it: *vYear)
-            if(!it->isPassed())
-                finishedYear = false;
-
         if (finishedYear) {
             year = ++year;
             ostalo_ispita_za_ovu_godinu = 10;
+			polozeno_ove_godine = 0;
         }
         switch (year) {
             case first:
@@ -238,6 +235,13 @@ void draw_coins() {
                 break;
 
         }
+		
+
+        if (student.getDebt() > 1000000) {
+            game_over = true;
+            exit(EXIT_FAILURE);
+        }
+
     }
 
 
