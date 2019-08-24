@@ -144,6 +144,7 @@ void change_colour(void) {
 
 void Plane::draw(){
     glPushMatrix();
+	
 	  
     glTranslatef(0, 0, z_pos/3);
   
@@ -166,9 +167,7 @@ void Plane::draw(){
 		glEnd();
 	}
 	glDisable(GL_TEXTURE_2D);
-	glPopMatrix();
-	//glutSolidCube(4);
-    
+	glPopMatrix();    
 	
 }
 

@@ -41,50 +41,50 @@ void on_reshape(int width, int height) {
 void on_display(void) {
 
 
-    setLight();
-    setMaterial();
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glViewport(0, 0, window_width, window_height);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(
-            60,
-            window_width / (float)window_height,
-            1, z_pos
-    );
+	setLight();
+	setMaterial();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glViewport(0, 0, window_width, window_height);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(
+			60,
+			window_width / (float)window_height,
+			1, z_pos
+	);
 	if (jump_active) 
 		camera.setLook(FOURTH_VIEW);
 	else	
 		camera.setLook(look_id);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-
-	if (state == game) {
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	if (state == start) 
+		show_start_scene();
+	else {
 		plane.draw();
-    	
+		
 		student.draw();
-
-    	draw_coins();
+		draw_coins();
 
 		boban.draw();
 
 
-    	if (!on_head)
-		    boban.doesStudentWalkOnMyHead(student);
+		if (!on_head)
+			boban.doesStudentWalkOnMyHead(student);
+		else 
+			boban.didStudentLeaveMyHead(student);
 
 
-    	std::string buffer("Ostalo ti je jos ");
-    	buffer += std::to_string(courses_left) + " ispita do kraja.\n";
+		std::string buffer("Ostalo ti je jos ");
+		buffer += std::to_string(courses_left) + " ispita do kraja.\n";
 
-    	std::string buffer2("Tvoj dug je: ");
-    	buffer2 += std::to_string(student.getDebt()) + "rsd.";
+		std::string buffer2("Tvoj dug je: ");
+		buffer2 += std::to_string(student.getDebt()) + "rsd.";
 
-    	draw_score(buffer2.data(), buffer2.size(),  0, 440);
-    	draw_score(buffer.data(), buffer.size(), 0, 580);
-	} else if (state == start) {
-		show_start_scene();
+		draw_score(buffer2.data(), buffer2.size(),  0, 440);
+		draw_score(buffer.data(), buffer.size(), 0, 580);
 	}
     glPopMatrix();
     glutSwapBuffers();
@@ -113,7 +113,7 @@ void on_keyboard(unsigned char key, int x, int y) {
             timer_activeZ = 0;
             break;
         case 'q': case 'Q':
-            if (!jump_active) {
+            if (!jump_active and !on_head) {
                 jump_active = 1;
                 direction_keeper = timer_activeX;
                 timer_activeX = 0;
@@ -151,7 +151,6 @@ void on_timer(int value) {
         return;
     if (!jump_active) {
         x_pos += (timer_activeX * lracceleration);
-        std::cout << "DODAO i ";
         glutPostRedisplay();
     }
     if (x_pos <= -3 || x_pos >= 3)
@@ -159,7 +158,6 @@ void on_timer(int value) {
 
     if (timer_activeX and timer_activeZ) {
         glutTimerFunc(50, on_timer, 0);
-        std::cout << "POZVAN TIMER" << std::endl;
     }
 
 }

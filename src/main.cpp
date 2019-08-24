@@ -24,11 +24,12 @@ void init(int argc, char** argv) {
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
     srand((unsigned)time(nullptr));
 
-    
+    glutInitWindowSize(600, 600);
     glutInitWindowPosition(100, 100);
     glutCreateWindow(argv[0]);
-	//glutFullScreen();
-    glutInitWindowSize(300, 300);
+	
+	glutFullScreen();
+    
     glClearColor(0, 0, 0, 0);
 	glEnable(GL_DEPTH_TEST);
 

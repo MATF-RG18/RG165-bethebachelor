@@ -305,13 +305,21 @@ void test_collision(std::vector<Coin*>& vYear) {
 void show_start_scene() {
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, matf_pic);
-	glTexCoord2f(0, 0);
-	glVertex3f(0, 0, 0);
-	glTexCoord2f(1, 0);
-	glVertex3f(1, 0, 0);
-	glTexCoord2f(1, 1);
-	glVertex3f(1, 1, 0);
-	glTexCoord2f(0, 1);
-	glVertex3f(0, 1, 0);
-	glDisable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    glNormal3f(0, 0, 1);
+
+    glTexCoord2f(0, 0);
+    glVertex3f(-5, -3, 0);
+
+    glTexCoord2f(1, 0);
+    glVertex3f(4.5, -3, 0);
+
+    glTexCoord2f(1, 1);
+    glVertex3f(4.5, 3, 0);
+
+    glTexCoord2f(0, 1);
+    glVertex3f(-5, 3, 0);
+
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
