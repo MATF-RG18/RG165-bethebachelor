@@ -1,5 +1,6 @@
 #include <memory.h>
 #include "functions.hpp"
+#include "boban.hpp"
 #include <iostream>
 #include <random>
 
@@ -9,7 +10,8 @@ int increment = 0;
 int sub_inx = 0;
 unsigned polozeno_ove_godine = 0, ostalo_ispita_za_ovu_godinu = 10;
 extern float z_pos;
-bool game_over = false;
+extern Boban boban;
+
 
 GLuint names[40];
 GLuint parquet;
@@ -215,6 +217,17 @@ void draw_coins() {
             year = ++year;
             ostalo_ispita_za_ovu_godinu = 10;
 			polozeno_ove_godine = 0;
+			
+			if (year == second) {
+				std::random_device rd;
+				std::uniform_real_distribution<> distZ(-55 - increment, -3 - increment);
+				std::uniform_real_distribution<> distX(-1.5, 1.5);
+				float z_coord = distZ(rd);
+				float x_coord = distX(rd);
+				boban.setX(x_coord);
+				boban.setZ(z_coord);
+				boban.setReady();
+			}
         }
         switch (year) {
             case first:
@@ -238,7 +251,6 @@ void draw_coins() {
 		
 
         if (student.getDebt() > 1000000) {
-            game_over = true;
             exit(EXIT_FAILURE);
         }
 

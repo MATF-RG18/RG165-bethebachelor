@@ -67,16 +67,16 @@ void on_display(void) {
 		
 		student.draw();
 		draw_coins();
-
-		boban.draw();
-
-
-		if (!on_head)
-			boban.doesStudentWalkOnMyHead(student);
-		else 
-			boban.didStudentLeaveMyHead(student);
+		if (boban.isReady()) {
+			boban.draw();
 
 
+			if (!on_head)
+				boban.doesStudentWalkOnMyHead(student);
+			else 
+				boban.didStudentLeaveMyHead(student);
+		}
+		
 		std::string buffer("Ostalo ti je jos ");
 		buffer += std::to_string(courses_left) + " ispita do kraja.\n";
 

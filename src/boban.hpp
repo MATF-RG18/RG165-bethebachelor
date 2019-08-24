@@ -10,9 +10,21 @@ public:
 	void draw();
 	bool doesStudentWalkOnMyHead(Student& st);
 	void didStudentLeaveMyHead(Student& st);
+	void setX(float x) {
+		x_position = x;
+	}
+	void setZ(float z) {
+		z_position = z;
+	}
+	bool isReady() {
+		return ready;
+	}
+	void setReady() {
+		ready = true;
+	}
 private:
-	GLdouble x_position = 0, y_position = 2.5, z_position = -10;
-	double radius = 2;
+	GLdouble x_position, y_position = 2.5, z_position;
+	bool ready = false;
 };
 
 
