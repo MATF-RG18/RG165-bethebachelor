@@ -20,7 +20,7 @@ GLuint parquet;
 GLuint boban_pic;
 GLuint matf_pic;
 GLuint fon_pic;
-
+GLuint win_pic;
 
 std::vector<Coin*> vYear1(10);
 std::vector<Coin*> vYear2(10);
@@ -184,6 +184,27 @@ void initialize_texture() {
                  image->width, image->height, 0,
                  GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
     image_done(image);
+	
+	
+	glGenTextures(1, &win_pic);
+    image = image_init(0, 0);
+    std::string beTheBachelor = "../src/images/win_pic.bmp";
+    image_read(image, strdup(beTheBachelor.c_str()));
+
+    glBindTexture(GL_TEXTURE_2D, win_pic);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+    image_done(image);
+
 
 
 }
@@ -395,7 +416,7 @@ void show_end_scene() {
     glDisable(GL_LIGHTING);
     GLuint picture;
     if (win) {
-
+		picture = win_pic;
     } else {
         picture = fon_pic;
     }
