@@ -45,7 +45,6 @@ bool Boban::doesStudentWalkOnMyHead(Student& st) {
 	bool C = st.z_front < z_position and st.z_front > z_position - 6;
 	bool D = st.z_front < z_position - 0.5 and st.z_front > z_position - 6;
 	
-	std::cout << A << B << C << std::endl;
 	if (A and B and C and !D) {
 		y_pos = 4.2;
 		on_head = true;
