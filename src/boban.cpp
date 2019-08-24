@@ -1,10 +1,17 @@
-#include "boban.hpp"
 #include <cmath>
-#include <GL/glut.h>
 #include <iostream>
+#include "boban.hpp"
+#include "functions.hpp"
+
+bool on_head = false;
+
 extern STATE state;
-extern bool win;
+extern bool win, downing;
+extern float u, y_pos;
+extern int jump_active, timer_activeX, direction_keeper;
 extern GLuint boban_pic;
+
+
 void Boban::draw() {
 	
 	glPushMatrix();
@@ -30,10 +37,8 @@ void Boban::draw() {
 }
 
 
-extern float u, y_pos;
-extern int jump_active, timer_activeX, direction_keeper;
-bool on_head = false;
-
+//Provera da li je student skocio na gredu ili udario u nju 
+//ili nista od ta dva
 bool Boban::doesStudentWalkOnMyHead(Student& st) {
 	bool A = st.x_front < x_position + .5 and  st.x_front > x_position - .5;
 	bool B = st.y_front < y_position + 0.005 and st.y_front > y_position - 1.3;
@@ -52,7 +57,7 @@ bool Boban::doesStudentWalkOnMyHead(Student& st) {
 	return false;
 }
 
-extern bool downing;
+//Provera da li je i kad pao sa grede
 void Boban::didStudentLeaveMyHead(Student& st) {
 	bool A = st.z_front < z_position - 7.5;
 	bool B = st.x_front > x_position + .5 or st.x_front < x_position - .5;

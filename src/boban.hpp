@@ -1,9 +1,11 @@
 #ifndef __BOBAN_HPP__
-#define __BOBAN_HPP__ 1
+#define __BOBAN_HPP__
 
 #include <GL/gl.h>
 #include "figure.hpp"
-#include "functions.hpp"
+
+
+
 
 class Boban {
 public:

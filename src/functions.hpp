@@ -16,6 +16,6 @@ void test_collision(std::vector<Coin*>&);
 void draw_score(const char* score, int length, int x, int y);
 void fill_vector_of_courses(std::vector<Coin*>& vYear);
 void show_start_scene();
-
+void show_end_scene();
 
 #endif

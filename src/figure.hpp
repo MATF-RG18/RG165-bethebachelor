@@ -1,5 +1,5 @@
-#ifndef _DRAW_HPP
-#define _DRAW_HPP 1
+#ifndef _FIGURE_HPP_
+#define _FIGURE_HPP_
 
 #include "camera.hpp"
 #include <string>

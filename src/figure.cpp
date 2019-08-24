@@ -1,35 +1,25 @@
-#include <stdio.h>
+#include <cstdio>
 #include <iostream>
 #include <GL/glut.h>
-#include <math.h>
+#include <cmath>
 #include "callbackfuncs.hpp"
-#include "functions.hpp"
 
 
-extern GLfloat diffuse_coeffs[7][4];
-
-extern GLfloat specular_coeffs[4];
-Camera camera;
-int look_id = 1;
-int timer_activeX = 0, timer_activeZ = 0;
-int jump_active = 0;
-float x_pos = 0, z_pos = -0.1;
-float lracceleration = 0.08;
-int colour_counter = 0;
-int direction_keeper = 0;
-extern GLuint names[40];
+float ind_for_colors = 0, u = 0, v = 3.14, y_pos = 1.4, x_pos = 0, z_pos = -0.1, lracceleration = 0.08;
 bool downing = false;
+int look_id = 1, timer_activeX = 0, timer_activeZ = 0, jump_active = 0, colour_counter = 0, direction_keeper = 0;
+
+Camera camera;
+extern GLuint names[40];
 extern GLuint parquet;
-
-
-/* Funckija za iscrtavanje figurice,
- * tj loptice u pocetnoj fazi
- */
-
+extern GLfloat diffuse_coeffs[7][4];
+extern GLfloat specular_coeffs[4];
+extern unsigned courses_left;
 extern bool on_head;
-float ind_for_colors = 0;
-float u = 0, v = 3.14;
-float y_pos = 1.4;
+
+
+
+
 void Student::draw() {
 
     glPushMatrix();
@@ -38,12 +28,13 @@ void Student::draw() {
     x_front = x_pos;
     y_front = 0.71;
 
+	//Kretanje u jump modu
     if (jump_active) {
         y_front += 1.3 * sin(u);
         glTranslatef(x_pos, y_pos + 3 * sin(u), z_pos);
         u += .1;
     } else if (downing) {
-		std::cout << y_pos << std::endl;
+		//Kretanje u delu kada se pada sa grede
 		y_pos -= .1;
 		glTranslatef(x_pos, y_pos, z_pos);	
 		if (y_pos <= 1.4 + 0.1 and y_pos >= 1.4 - 0.1) {
@@ -52,9 +43,13 @@ void Student::draw() {
 		}
 	}
     else {
+		//Klasicno kretanje
         y_front = 0;
         glTranslatef(x_pos, y_pos, z_pos);
     }
+
+
+
 
     angle += 6;
     GLfloat head_col[4] = {0, .1, 1, 0};
@@ -92,7 +87,10 @@ void Student::draw() {
 
 
     //Iscrtavanje ekstrimiteta
-    if (legs_angle > 70)
+    //Ceo ovaj deo koda je bio potpuno stelovanje
+	//da se sve sklopi jedno sa drugim i da kretanje
+	//deluje sto prirodnije
+	if (legs_angle > 70)
         direction = -1;
     else if (legs_angle < -70)
         direction = 1;
@@ -134,6 +132,12 @@ void Student::draw() {
 
     glPopMatrix();
 
+	//KRAJ KRITICNOG DELA
+
+
+
+	//Provera da li je zavrsen skok i da l i je moguce se vratiti
+	//u regularno kretanje
     if (!on_head and (jump_active == 1 and u >= 3.14)) {
 
         jump_active = 0;
@@ -141,7 +145,7 @@ void Student::draw() {
         timer_activeX = direction_keeper;
         glutTimerFunc(50, on_timer, 0);
     } else if (on_head and jump_active == 1 ) {
-		
+		//Obezbednjivanje ostajanja na gredi u slucaju skoka na nju
         jump_active = 0;
         u = 0;
         timer_activeX = direction_keeper;
@@ -149,7 +153,6 @@ void Student::draw() {
 	}
 
 }
-
 
 void change_colour(void) {
     colour_counter = (colour_counter + 1) % 6;
@@ -167,6 +170,9 @@ void Plane::draw(){
 	float tmp_y = 0;
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, parquet);
+	//300 puta se staticki iscrtava podloga
+	//jer nije dovoljno velika rezolucija slike 
+	//za teksturu kako bi mogli iz jednog dela
 	for (int i = 0; i < 300; i++) {
 		glBegin(GL_POLYGON);
 			glTexCoord2f(0, 0);
@@ -184,6 +190,9 @@ void Plane::draw(){
 	
 }
 
+
+//Iscrtvanje tokena koji se sastoji iz jednog valjka
+//i dva diska kao poklopac
 void Coin::draw() {
     GLfloat coin_color[4] = {1, 1, 0, 0};
 
@@ -229,9 +238,8 @@ Coin::Coin(const std::string &name, GLdouble disk_inner, GLdouble disk_outer, GL
             z_position(z), x_position(x), professor(s), inx(u){}
 
 
-
-
-extern unsigned courses_left;
+//Ovo je u sustini glavna provera da li je doslo do kolizije
+//izmedju studenta i tokena
 bool Coin::touched(GLdouble student_x_front, GLdouble student_x_back, GLdouble student_y_front,
               GLdouble student_y_back, GLdouble student_z_front, GLdouble studnet_z_back) const {
     double epsilon_x = 0.20;

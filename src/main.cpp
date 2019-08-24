@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+
+//Izdvojeni svi initi u zasebnu funkciju.
 void init(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
