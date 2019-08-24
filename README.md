@@ -16,14 +16,14 @@ gde je neophodno da igrač korišćenjem komandi
 sa tastature se kreće duž ploče u nadi da će skupiti
 sve tokene sa slikama profesora koji predaju
 neki ispit na fakultetu i doći do kraja
-(završiti osnovne studije)
+(završiti osnovne studije)  
 > Sama igra se sastoji od 4 nivoa, sa predmetima
 po svakoj godini. U sledeći nivo se prelazi
 tek nakon što se očisti cela godina (nije kao
 u stvarnosti :( ), na svakom sledećem nivou
 igrač se kreće brže. Naravno neophodno je 
 sve to uraditi što ranije jer dug prema
-fakultetu raste.
+fakultetu raste.  
 > U toku treće godine se pojavljuje u vazduhu
 greda sa likom Bobana(nije Boban nego crnogorski 
 glumac Slavko Labović jer nisam uspeo da 
