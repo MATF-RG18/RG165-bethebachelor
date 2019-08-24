@@ -18,7 +18,7 @@ float lracceleration = 0.08;
 int colour_counter = 0;
 int direction_keeper = 0;
 extern GLuint names[40];
-
+bool downing = false;
 extern GLuint parquet;
 
 
@@ -28,7 +28,7 @@ extern GLuint parquet;
 
 extern bool on_head;
 float ind_for_colors = 0;
-float u = 0;
+float u = 0, v = 3.14;
 float y_pos = 1.4;
 void Student::draw() {
 
@@ -42,7 +42,15 @@ void Student::draw() {
         y_front += 1.3 * sin(u);
         glTranslatef(x_pos, y_pos + 3 * sin(u), z_pos);
         u += .1;
-    }
+    } else if (downing) {
+		std::cout << y_pos << std::endl;
+		y_pos -= .1;
+		glTranslatef(x_pos, y_pos, z_pos);	
+		if (y_pos <= 1.4 + 0.1 and y_pos >= 1.4 - 0.1) {
+			downing = false;
+			y_pos = 1.4;
+		}
+	}
     else {
         y_front = 0;
         glTranslatef(x_pos, y_pos, z_pos);
@@ -126,14 +134,19 @@ void Student::draw() {
 
     glPopMatrix();
 
-    std::cout << x_pos << std::endl;
-    if ((jump_active == 1 and u >= 3.14) or on_head) {
+    if (!on_head and (jump_active == 1 and u >= 3.14)) {
 
         jump_active = 0;
         u = 0;
         timer_activeX = direction_keeper;
         glutTimerFunc(50, on_timer, 0);
-    }
+    } else if (on_head and jump_active == 1 ) {
+		
+        jump_active = 0;
+        u = 0;
+        timer_activeX = direction_keeper;
+        glutTimerFunc(50, on_timer, 0);
+	}
 
 }
 

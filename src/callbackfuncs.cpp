@@ -104,7 +104,7 @@ void on_keyboard(unsigned char key, int x, int y) {
             timer_activeX = 1;
             break;
         case 'w': case 'W':
-            if (timer_activeZ == 0)
+            if (timer_activeZ == 0 and state != start)
                 glutTimerFunc(50, on_timer2, 0);
             timer_activeZ = 1;
             break;

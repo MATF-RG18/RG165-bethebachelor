@@ -23,7 +23,7 @@ void Boban::draw() {
 	glDisable(GL_TEXTURE_2D);
 	glTranslatef(x_position, y_position+.2, z_position-3.6);
 	glScalef(0.8, 0.7, 10);
-	glutSolidCube(.7);
+	glutWireCube(.7);
 	glPopMatrix();
 
 }
@@ -49,7 +49,15 @@ bool Boban::doesStudentWalkOnMyHead(Student& st) {
 	return false;
 }
 
-
+extern bool downing;
 void Boban::didStudentLeaveMyHead(Student& st) {
-
+	bool A = st.z_front < z_position - 7.5;
+	bool B = st.x_front > x_position + .5 or st.x_front < x_position - .5;
+	if (A or B) {
+		on_head = false;
+		downing = true;
+	}
+	if (A) 
+		st.setDebt(st.getDebt() / 2);
+	
 }
