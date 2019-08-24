@@ -11,6 +11,8 @@ int sub_inx = 0;
 unsigned polozeno_ove_godine = 0, ostalo_ispita_za_ovu_godinu = 10;
 extern float z_pos;
 extern Boban boban;
+bool win;
+extern STATE state;
 
 
 GLuint names[40];
@@ -251,9 +253,15 @@ void draw_coins() {
 		
 
         if (student.getDebt() > 1000000) {
-            exit(EXIT_FAILURE);
+            state = over;
+			win = false;
         }
-
+		
+		
+		if (finishedYear and year == fourth) {
+			state = over;
+			win = true;
+		}
     }
 
 

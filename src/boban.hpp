@@ -3,7 +3,7 @@
 
 #include <GL/gl.h>
 #include "figure.hpp"
-
+#include "functions.hpp"
 
 class Boban {
 public:

@@ -21,6 +21,7 @@ extern float ind_for_colors;
 Plane plane;
 Student student;
 Boban boban;
+extern bool win;
 unsigned courses_left = 40;
 
 double forward_acceleration;
@@ -62,7 +63,7 @@ void on_display(void) {
 	glEnable(GL_LIGHT0);
 	if (state == start) 
 		show_start_scene();
-	else {
+	else if (state == game) {
 		plane.draw();
 		
 		student.draw();
@@ -85,7 +86,7 @@ void on_display(void) {
 
 		draw_score(buffer2.data(), buffer2.size(),  0, 440);
 		draw_score(buffer.data(), buffer.size(), 0, 580);
-	}
+	} else 
     glPopMatrix();
     glutSwapBuffers();
 }
@@ -153,8 +154,11 @@ void on_timer(int value) {
         x_pos += (timer_activeX * lracceleration);
         glutPostRedisplay();
     }
-    if (x_pos <= -3 || x_pos >= 3)
-        exit(EXIT_FAILURE);
+    if (x_pos <= -3 || x_pos >= 3) {
+		state = over;
+		win = false;
+	}
+        
 
     if (timer_activeX and timer_activeZ) {
         glutTimerFunc(50, on_timer, 0);

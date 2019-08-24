@@ -2,7 +2,8 @@
 #include <cmath>
 #include <GL/glut.h>
 #include <iostream>
-
+extern STATE state;
+extern bool win;
 extern GLuint boban_pic;
 void Boban::draw() {
 	
@@ -44,7 +45,8 @@ bool Boban::doesStudentWalkOnMyHead(Student& st) {
 		y_pos = 4.2;
 		on_head = true;
 	} else if (A and B and C) {
-		exit(EXIT_FAILURE);
+		state = over;
+		win = false;
 	}
 
 	return false;
